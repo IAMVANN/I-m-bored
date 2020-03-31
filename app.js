@@ -22,7 +22,7 @@ let control =  document.getElementById("Control")
 window.onload = function(){
     start = document.createElement("h2");
     start.id = "start";
-    start.innerHTML = "Start";
+    start.innerHTML = "start";
     control.append(start);
 }
 control.onclick = init;
