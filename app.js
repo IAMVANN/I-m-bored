@@ -6,13 +6,16 @@ let started = false;
 let game;
 let movement;
 let gametime = 0;
+let jumpcounter = 0;
+let cooldown = 0;
 var player = {
     x1 : 300,
-    x2 : 350,
+    x2 : 300,
     y1 : 300,
-    y2 : 350,
+    y2 : 300,
     status : "normal"
 }
+let used = false;
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 let board = document.getElementById("board");
 let canvas = board.getContext("2d");
@@ -22,7 +25,7 @@ let control =  document.getElementById("Control")
 window.onload = function(){
     start = document.createElement("h2");
     start.id = "start";
-    start.innerHTML = "start";
+    start.innerHTML = "Start";
     control.append(start);
 }
 control.onclick = init;
@@ -34,7 +37,7 @@ function init(object){
         start.remove();
         canvas.clearRect(0, 0, 1024, 500);
         // Make all init variables
-        game = setInterval(action, 1000);
+        game = setInterval(action, 100);
 
 
     }
@@ -45,21 +48,47 @@ function action(){
     position();
     reset();//finds current screen and passes it on to render
     render();//renders the whole thing
-    movement = undefined; //keep this as last thing in draw or maybe eventually move it.
+
+    player.x2 = player.x1;
+    player.y2 = player.y1;
+
+    console.log(cooldown)
+    if(cooldown == 0){
+        used = false;
+    } else {
+        cooldown--;
+    }
 }
 function position(){
-    if(movement == "top" ){
+    if(movement == "top"){
         //need to fix this sometimeas
+        used = true;
+        if(jumpcounter < 5){
+            canvas.clearRect(player.x2 - 1, player.y2 - 1, 22, 22);
+            player.y1 -= 20;
+            player.y2 -= 20;
+            jumpcounter++;
+        } else {
 
-        canvas.clearRect(player.x1 -1 , player.y1 -1, 22, 22);
-        player.y1 += 20;
-        player.y2 += 20;
+            jumpcounter = 0;
+            movement = "fall";
 
-    } else if(movement == "right"){
-        player.y1 -= 20;
-        player.y2 -= 20;
+        }
+
+
+    } else if(movement == "fall"){
+        if(jumpcounter < 5){
+            canvas.clearRect(player.x2 - 1, player.y2 - 1, 22, 22);
+            player.y1 += 20;
+            player.y2 += 20;
+            jumpcounter++;
+        } else {
+            jumpcounter = 0;
+            movement = undefined;
+            used = false;
+        }
     }
-    canvas.clearRect(player.x1 -1 , player.y1 -1, 22, 22);
+    canvas.clearRect(player.x1 - 1, player.y1 - 1, 22, 22);
 
 }
 function reset(){
@@ -68,6 +97,7 @@ function reset(){
             // Get the pixel at this location
             if(x <= 995 ){
                 var pixelfront = canvas.getImageData(x+5, 0, 1, 500);
+
             } else {
                 canvas.clearRect(x, 0, 1, 500 )
             }
@@ -90,7 +120,7 @@ function render(){
     canvas.lineTo(1000, 100);
     canvas.stroke();
     canvas.beginPath();
-    canvas.rect(player.y1, player.y1, 20, 20);
+    canvas.rect(player.x1, player.y1, 20, 20);
     canvas.stroke();
 }
 function direction(event){
@@ -99,6 +129,10 @@ function direction(event){
     } else if (event.keyCode == 39){
         movement = "right";
     } else if (event.keyCode == 38){
-        movement = "top"
+        if(used == false){
+            movement = "top"
+            used = true;
+            cooldown = 11;
+        }
     }
 }
