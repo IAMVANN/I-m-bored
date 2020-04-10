@@ -15,9 +15,9 @@
 
 */
 const plainlvl = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // each one is worth 50 pixels. 15* 50 = 750;
-const lv1 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1] //triagnle every 150 pixels // 150 * 10 = 1500 pixels
+const lv1 = [1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0] //triagnle every 150 pixels // 150 * 10 = 1500 pixels
 
-const arrayMaster = [ lv1, plainlvl]
+const arrayMaster = [ lv1, plainlvl] //put the levels u want here!!!!
 ///////////////////// APP STATE (VARIABLES) /////////////////////////
 let start;
 let started = false;
@@ -63,7 +63,7 @@ function init(object){
         start.remove();
         canvas.clearRect(0, 0, 1500, 500);
         // Make all init variables
-        game = setInterval(action, 5);
+        game = setInterval(action, 25);
 
 
     }
@@ -73,6 +73,7 @@ function action(){
     gametime += 1;
     unpack();
     position();
+    contact();
     refresh();//finds current screen and passes it on to render
     render();//renders the whole thing
 
@@ -92,7 +93,7 @@ function unpack(){
         if(gametime % 10 == 0){
             currentObject = currentArray[arrayposition];
             arrayposition++;
-            if(arrayposition == 10){
+            if(arrayposition == 30){
                 loading = false;
             }
 
@@ -107,6 +108,14 @@ function unpack(){
         loading = true;
     }
 }
+function contact(){
+    hitRay.forEach((item, i) => {
+        if(player.x1 + 50 > item.x1 && player.x1 + 50 < item.x2 && player.y2 < item.y1){
+            alert("Game end")
+        }
+    });
+
+}
 function position(){
     if(movement == "top"){
         //need to fix this sometimeas
@@ -117,7 +126,6 @@ function position(){
             player.y2 -= 50;
             jumpcounter++;
         } else {
-
             jumpcounter = 0;
             movement = "fall";
 
@@ -137,6 +145,11 @@ function position(){
         }
     }
     canvas.clearRect(player.x1 - 1, player.y1 - 1, 52, 52);
+    hitRay.forEach((item, i) => {
+        item.x1 -= 5;
+        item.x2 -= 5;
+    });
+
 
 }
 function refresh(){
@@ -164,7 +177,7 @@ function render(){
             canvas.lineTo(1500, 405);
             canvas.stroke();
             adder(1450, 1475, 405, 355);
-            adder(1475, 1450, 355, 405);
+            adder(1475, 1500, 355, 405);
         } else if(currentObject == 0){
 
         }
@@ -172,7 +185,12 @@ function render(){
     }
 }
 function adder(x1, x2, y1, y2){
-    hitRay[hitRayPos];
+    hitRay[hitRayPos] = new Object();
+    hitRay[hitRayPos].x1 = x1;
+    hitRay[hitRayPos].x2 = x2;
+    hitRay[hitRayPos].y1 = y1;
+    hitRay[hitRayPos].y2 = y2;
+    hitRayPos++;
 }
 function direction(event){
     if (event.keyCode == 32){
