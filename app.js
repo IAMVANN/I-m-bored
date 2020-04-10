@@ -31,6 +31,8 @@ let arraypicker = -1; //shows which array is being used in array master.
 let currentArray;
 let arrayposition = 0;
 let currentObject;
+let hitRay = []; //hit array
+let hitRayPos = 0;
 var player = {
     x1 : 400,
     x2 : 400,
@@ -70,7 +72,7 @@ function action(){
     gametime += 1;
     unpack();
     position();
-    reset();//finds current screen and passes it on to render
+    refresh();//finds current screen and passes it on to render
     render();//renders the whole thing
 
     player.x2 = player.x1;
@@ -136,7 +138,7 @@ function position(){
     canvas.clearRect(player.x1 - 1, player.y1 - 1, 52, 52);
 
 }
-function reset(){
+function refresh(){
     for(var x = 0; x <= 1500; x++) {
 
             // Get the pixel at this location
@@ -170,17 +172,20 @@ function render(){
             canvas.lineTo(1475, 355);
             canvas.lineTo(1500, 405);
             canvas.stroke();
+            adder(1450, 1475, 405, 355);
+            adder(1475, 1450, 355, 405);
         } else if(currentObject == 0){
 
         }
         currentObject = undefined;
     }
 }
+function adder(p, p2, l1, l2){
+    hitRay[hitRayPos] ;
+}
 function direction(event){
     if(event.keyCode == 37){
         movement = "left";
-    } else if (event.keyCode == 39){
-        movement = "right";
     } else if (event.keyCode == 38){
         if(used == false){
             movement = "top"
