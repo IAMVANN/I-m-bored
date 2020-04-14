@@ -16,8 +16,8 @@
 */
 const plainlvl = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // each one is worth 50 pixels. 15* 50 = 750;
 const lv1 = [1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0] //triagnle every 150 pixels // 150 * 10 = 1500 pixels
-
-const arrayMaster = [ lv1, plainlvl] //put the levels u want here!!!!
+const lv2 = [2, 0 ,0, 2, 0,0, 2, 0, 0]
+const arrayMaster = [ lv2, plainlvl] //put the levels u want here!!!!
 ///////////////////// APP STATE (VARIABLES) /////////////////////////
 let start;
 let started = false;
@@ -34,11 +34,17 @@ let arrayposition = 0;
 let currentObject;
 let hitRay = []; //hit array
 let hitRayPos = 0;
+let groundRay = [];
+let groundRayPos = 0;
+let groundLevel = 400;
+let groundStateCount = 0;
+let groundedState = "off";
+let groundStateTime = 0;
 var player = {
     x1 : 400,
-    x2 : 400,
+    x2 : 400, // prob gonna change this to GROUND LEVEL!!!
     y1 : 350,
-    y2 : 400,
+    y2 : 400, //player.y1 is to act as the last position of y1.
     status : "normal"
 }
 let used = false;
@@ -71,16 +77,27 @@ function init(object){
 }
 function action(){
     gametime += 1;
+    hitRay.forEach((item, i) => {
+        item.x1 -= 5;
+        item.x2 -= 5;
+    });
+    groundRay.forEach((item, i) => {
+        item.x1 -= 5;
+        item.x2 -= 5;
+    });
+
     unpack();
+    ground();
     position();
-    contact();
+
+
     refresh();//finds current screen and passes it on to render
     render();//renders the whole thing
+    contact();
 
     player.x2 = player.x1;
     player.y2 = player.y1;
 
-    console.log(cooldown)
     if(cooldown == 0){
         used = false;
     } else {
@@ -110,7 +127,7 @@ function unpack(){
 }
 function contact(){
     hitRay.forEach((item, i) => {
-        if(player.x1 + 50 > item.x1 && player.x1 + 50 < item.x2 && player.y2 < item.y1){
+        if(player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y2){
             alert("Game end")
         }
     });
@@ -126,30 +143,43 @@ function position(){
             player.y2 -= 50;
             jumpcounter++;
         } else {
-            jumpcounter = 0;
-            movement = "fall";
+
+            movement = undefined;
 
         }
 
 
-    } else if(movement == "fall"){
-        if(jumpcounter < 5){
+    }
+     if(movement == undefined && player.y1 + 100 <= groundLevel){
+        console.log(groundLevel)
+        console.log(player.y1)
+        if(player.y1 + 100 <= groundLevel ){
             canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
             player.y1 += 50;
             player.y2 += 50;
-            jumpcounter++;
-        } else {
-            jumpcounter = 0;
+        }
+            jumpcounter = 5;
             movement = undefined;
             used = false;
-        }
-    }
-    canvas.clearRect(player.x1 - 1, player.y1 - 1, 52, 52);
-    hitRay.forEach((item, i) => {
-        item.x1 -= 5;
-        item.x2 -= 5;
-    });
 
+    } else if(movement != "top"){
+        jumpcounter = 0;
+    }/*else if(movement == "Auto-Fall"){
+        canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
+        player.y1 += 50;
+        player.y2 += 50;
+        jumpcounter = 0;
+        movement = undefined;
+        used = false;
+    }*/
+    canvas.clearRect(player.x1 - 1, player.y1 - 1, 52, 52);
+
+    canvas.beginPath();
+    canvas.moveTo(player.x1 + 5, player.y1 + 25);
+    canvas.lineTo(player.x1, player.y1 + 25);
+    canvas.strokeStyle = "#9acd32"
+    canvas.stroke();
+    canvas.strokeStyle = "black"
 
 }
 function refresh(){
@@ -167,18 +197,37 @@ function render(){
     canvas.beginPath();
     canvas.rect(player.x1, player.y1, 50, 50);
     canvas.stroke();
+/*    canvas.beginPath()
+        canvas.fillStyle = "red";
+        canvas.rect(995, 0, 5, 166);
+    canvas.fill();
+    canvas.beginPath()
+        canvas.fillStyle = "blue";
+        canvas.rect(995, 166, 5, 166);
+    canvas.fill();
+    canvas.beginPath()
+        canvas.fillStyle = "green";
+        canvas.rect(995, 332, 5, 168);
+    canvas.fill();
+    canvas.fillStyle = "black"*/
     if(currentObject !== undefined){
         if(currentObject == 1){
             //triangle
             canvas.beginPath();
-            canvas.moveTo(1500, 405);
-            canvas.lineTo(1450, 405);
-            canvas.lineTo(1475, 355);
-            canvas.lineTo(1500, 405);
+            canvas.moveTo(1500, 400);
+            canvas.lineTo(1450, 400);
+            canvas.lineTo(1475, 350);
+            canvas.lineTo(1500, 400);
             canvas.stroke();
-            adder(1450, 1475, 405, 355);
-            adder(1475, 1500, 355, 405);
-        } else if(currentObject == 0){
+            adder(1450, 1475, 350, 400);
+            adder(1475, 1500, 350, 400);
+        } else if(currentObject == 2){
+            canvas.beginPath;
+            canvas.rect(1450, 350, 50, 50);
+            canvas.stroke();
+            adder(1450, 1450, 360, 400);
+            adder(1500, 1500, 360, 400);
+            stander(1450, 1500, 350, 350);
 
         }
         currentObject = undefined;
@@ -192,6 +241,14 @@ function adder(x1, x2, y1, y2){
     hitRay[hitRayPos].y2 = y2;
     hitRayPos++;
 }
+function stander(x1, x2, y1, y2){
+    groundRay[groundRayPos] = new Object();
+    groundRay[groundRayPos].x1 = x1;
+    groundRay[groundRayPos].x2 = x2;
+    groundRay[groundRayPos].y1 = y1;
+    groundRay[groundRayPos].y2 = y2;
+    groundRayPos++;
+}
 function direction(event){
     if (event.keyCode == 32){
         if(used == false){
@@ -200,4 +257,37 @@ function direction(event){
             cooldown = 11;
         }
     }
+}
+function ground(){
+    if(groundStateCount == 0){
+        /*let ppa = false; // just use to see if bottom is true/false
+        groundRay.forEach((item, i) => {
+            if(item.x2 == 400){
+                ppa = true;
+            }
+        });
+        if(groundedState == "On" && ppa == true){
+            movement = "Auto-Fall"
+
+        }*/
+        groundedState = "off"
+        groundLevel = 400;
+        groundStateCount = undefined;
+    }
+
+    if(groundedState == "off"){
+        //basically checks if there is something landable below the box, If yes, then grounded state is on for a certain period of timeout
+        //In this certain period of time, the landable object will go away, and this can run again.
+        groundRay.forEach((item, i) => {
+            if(item.x1 <= 450 && item.x1 >= 400 ){
+                groundedState = "On";
+                groundStateCount = 95;
+                groundLevel = item.y1;
+            }
+        });
+    } else {
+
+        groundStateCount -= 5;
+    }
+
 }
