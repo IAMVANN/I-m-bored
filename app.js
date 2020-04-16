@@ -8,11 +8,6 @@
 5 = 1 triangle on 2 squares
 6 = 3 squares stacked up
 7 =
-
-
-
-
-
 */
 const plainlvl = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // each one is worth 50 pixels. 15* 50 = 750;
 const lv1 = [1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0] //triagnle every 150 pixels // 150 * 10 = 1500 pixels
@@ -137,10 +132,10 @@ function position(){
     if(movement == "top"){
         //need to fix this sometimeas
         used = true;
-        if(jumpcounter < 5){
+        if(jumpcounter < 10){
             canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
-            player.y1 -= 50;
-            player.y2 -= 50;
+            player.y1 -= 17;
+            player.y2 -= 17;
             jumpcounter++;
         } else {
 
@@ -150,15 +145,15 @@ function position(){
 
 
     }
-     if(movement == undefined && player.y1 + 100 <= groundLevel){
+     if(movement == undefined && player.y1 + 67 <= groundLevel){ //THIS 75 NEEDS TO BE CHANGED 50 + CHANGE;
         console.log(groundLevel)
         console.log(player.y1)
-        if(player.y1 + 100 <= groundLevel ){
+        if(player.y1 + 67 <= groundLevel ){
             canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
-            player.y1 += 50;
-            player.y2 += 50;
+            player.y1 += 17;
+            player.y2 += 17;
         }
-            jumpcounter = 5;
+            jumpcounter = 10;
             movement = undefined;
             used = false;
 
@@ -254,7 +249,7 @@ function direction(event){
         if(used == false){
             movement = "top"
             used = true;
-            cooldown = 11;
+            cooldown = 21;
         }
     }
 }
