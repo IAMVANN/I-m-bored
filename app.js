@@ -1,18 +1,20 @@
 ///////////////////// CONSTANTS /////////////////////////////////////
-/* GUIDE
+/* GUIDE !!!!
 0 = nothing;
 1 = 1 traingle
 2 = 1 square
-3 = 1 triangle on a square
-4 = 2 squares stacked up
-5 = 1 triangle on 2 squares
-6 = 3 squares stacked up
-7 =
+-----------------------------------------------------------------------------------------------
+How To make a level !!!!
+Remember that character moves about 100 pixels per jumpcounter
+lvl = ["Type of level", then buildings!!!!];
+
 */
 const plainlvl = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // each one is worth 50 pixels. 15* 50 = 750;
-const lv1 = [1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0] //triagnle every 150 pixels // 150 * 10 = 1500 pixels
-const lv2 = [2, 0 ,0, 2, 0,0, 2, 0, 0]
-const arrayMaster = [ lv2, plainlvl] //put the levels u want here!!!!
+const lv1 = ["Reg",1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0] //triagnle every 150 pixels // 150 * 10 = 1500 pixels
+const lv2 = ["Reg", 2, 0 ,0, 2, 0,0, 2, 0, 0];
+const lv3 = ["Backwards-Grav"];
+const defalt = ["Reg", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const arrayMaster = [lv2, defalt] //put the levels u want here!!!!
 ///////////////////// APP STATE (VARIABLES) /////////////////////////
 let start;
 let started = false;
@@ -25,7 +27,7 @@ let loading = false //tells us if we are in the middle of loading something;
 let unpackingcounter;
 let arraypicker = -1; //shows which array is being used in array master.
 let currentArray;
-let arrayposition = 0;
+let arrayposition = 1;
 let currentObject;
 let hitRay = []; //hit array
 let hitRayPos = 0;
@@ -105,7 +107,7 @@ function unpack(){
         if(gametime % 10 == 0){
             currentObject = currentArray[arrayposition];
             arrayposition++;
-            if(arrayposition == 30){
+            if(arrayposition == currentArray.length - 1){
                 loading = false;
             }
 
@@ -118,6 +120,7 @@ function unpack(){
         arraypicker++;
         currentArray = arrayMaster[arraypicker];
         loading = true;
+        arrayposition = 1;
     }
 }
 function contact(){
@@ -129,53 +132,95 @@ function contact(){
 
 }
 function position(){
-    if(movement == "top"){
-        //need to fix this sometimeas
-        used = true;
-        if(jumpcounter < 10){
-            canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
-            player.y1 -= 17;
-            player.y2 -= 17;
-            jumpcounter++;
-        } else {
+    if(currentArray[0] == "Reg"){
+        if(movement == "top"){
+            //need to fix this sometimeas
+            used = true;
+            if(jumpcounter < 10){
+                canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
+                player.y1 -= 17;
+                player.y2 -= 17;
+                jumpcounter++;
+            } else {
 
-            movement = undefined;
+                movement = undefined;
+
+            }
+
 
         }
+         if(movement == undefined && player.y1 + 67 <= groundLevel){ //THIS 75 NEEDS TO BE CHANGED 50 + CHANGE;
+            console.log(groundLevel)
+            console.log(player.y1)
+            if(player.y1 + 67 <= groundLevel ){
+                canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
+                player.y1 += 17;
+                player.y2 += 17;
+            }
+                jumpcounter = 10;
+                movement = undefined;
+                used = false;
 
-
-    }
-     if(movement == undefined && player.y1 + 67 <= groundLevel){ //THIS 75 NEEDS TO BE CHANGED 50 + CHANGE;
-        console.log(groundLevel)
-        console.log(player.y1)
-        if(player.y1 + 67 <= groundLevel ){
+        } else if(movement != "top"){
+            jumpcounter = 0;
+        }/*else if(movement == "Auto-Fall"){
             canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
-            player.y1 += 17;
-            player.y2 += 17;
-        }
-            jumpcounter = 10;
+            player.y1 += 50;
+            player.y2 += 50;
+            jumpcounter = 0;
             movement = undefined;
             used = false;
+        }*/
+        canvas.clearRect(player.x1 - 1, player.y1 - 1, 52, 52);
 
-    } else if(movement != "top"){
-        jumpcounter = 0;
-    }/*else if(movement == "Auto-Fall"){
-        canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
-        player.y1 += 50;
-        player.y2 += 50;
-        jumpcounter = 0;
-        movement = undefined;
-        used = false;
-    }*/
-    canvas.clearRect(player.x1 - 1, player.y1 - 1, 52, 52);
+        canvas.beginPath();
+        canvas.moveTo(player.x1 + 5, player.y1 + 25);
+        canvas.lineTo(player.x1, player.y1 + 25);
+        canvas.strokeStyle = "#9acd32"
+        canvas.stroke();
+        canvas.strokeStyle = "black"
+    } /*else if(currentArray[0] == "Backwards-Grav") {
+        if(movement == "top"){
+            //need to fix this sometimeas
+            used = true;
+            if(jumpcounter < 10){
+                canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
+                player.y1 += 17;
+                player.y2 += 17;
+                jumpcounter++;
+            } else {
 
-    canvas.beginPath();
-    canvas.moveTo(player.x1 + 5, player.y1 + 25);
-    canvas.lineTo(player.x1, player.y1 + 25);
-    canvas.strokeStyle = "#9acd32"
-    canvas.stroke();
-    canvas.strokeStyle = "black"
+                movement = undefined;
 
+            }
+
+
+        }
+         if(movement == undefined && player.y1 - 67 >= groundLevel){ //THIS 75 NEEDS TO BE CHANGED 50 + CHANGE;
+            console.log(groundLevel)
+            console.log(player.y1)
+            if(player.y1 - 67 >= groundLevel){
+                canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
+                player.y1 -= 17;
+                player.y2 -= 17;
+            }
+                jumpcounter = 10;
+                movement = undefined;
+                used = false;
+
+        } else if(movement != "top"){
+            jumpcounter = 0;
+        }
+        canvas.clearRect(player.x1 - 1, player.y1 - 1, 52, 52);
+
+        canvas.beginPath();
+        canvas.moveTo(player.x1 + 5, player.y1 + 25);
+        canvas.lineTo(player.x1, player.y1 + 25);
+        canvas.strokeStyle = "#9acd32"
+        canvas.stroke();
+        canvas.strokeStyle = "black"
+    }
+    */
 }
 function refresh(){
         var pixelfront = canvas.getImageData(5, 0, 1500, 500);
@@ -189,9 +234,16 @@ function render(){
     canvas.lineTo(995, 406);
     canvas.stroke();
     canvas.lineWidth = 1;
-    canvas.beginPath();
-    canvas.rect(player.x1, player.y1, 50, 50);
-    canvas.stroke();
+    if(cooldown == 0){
+        canvas.beginPath();
+        canvas.rect(player.x1, player.y1, 50, 50);
+        canvas.stroke();
+    } else if (cooldown > 0){
+        canvas.beginPath();
+        canvas.rect(player.x1, player.y1, 50, 50);
+        canvas.stroke();
+    }
+
 /*    canvas.beginPath()
         canvas.fillStyle = "red";
         canvas.rect(995, 0, 5, 166);
