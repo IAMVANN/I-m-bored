@@ -1,7 +1,7 @@
 body {
   text-align: center;
   font-family: "Major Mono Display", monospace;
-  background-image: url(../images/tenor.gif);
+  background-image: url(../img/background.png);
   background-size:  cover;
   background-color: rgba(0, 0, 0, 0.3);
   background-blend-mode: darken;
