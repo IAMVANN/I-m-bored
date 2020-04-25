@@ -32,11 +32,6 @@ body {
   width: 450px;
 }
 
-.nav a:hover {
-  background: #333333;
-  transition: 0.4s;
-}
-
 #link{
   text-decoration: none;
   font-size: 70px;

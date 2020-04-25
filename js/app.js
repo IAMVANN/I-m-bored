@@ -131,6 +131,10 @@ function contact(){
     });
 
 }
+
+function endgame(){
+
+}
 function position(){
     if(currentArray[0] == "Reg"){
         if(movement == "top"){
@@ -176,9 +180,9 @@ function position(){
         canvas.beginPath();
         canvas.moveTo(player.x1 + 5, player.y1 + 25);
         canvas.lineTo(player.x1, player.y1 + 25);
-        canvas.strokeStyle = "#9acd32"
+        canvas.strokeStyle = "white"
         canvas.stroke();
-        canvas.strokeStyle = "black"
+        canvas.strokeStyle = "white"
     } /*else if(currentArray[0] == "Backwards-Grav") {
         if(movement == "top"){
             //need to fix this sometimeas
