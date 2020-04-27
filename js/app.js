@@ -6,7 +6,7 @@
 -----------------------------------------------------------------------------------------------
 How To make a level !!!!
 Remember that character moves about 100 pixels per jumpcounter
-lvl = ["Type of level", then buildings!!!!];
+lvl = ["Type of level", then buildings!!!! The amount of buildings can be unlimited!@$WR];
 
 */
 const plainlvl = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // each one is worth 50 pixels. 15* 50 = 750;
@@ -66,7 +66,7 @@ function init(object){
         start.remove();
         canvas.clearRect(0, 0, 1500, 500);
         // Make all init variables
-        game = setInterval(action, 25);
+        game = setInterval(action, 15);
 
 
     }
