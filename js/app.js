@@ -10,14 +10,15 @@ lvl = ["Type of level", then buildings!!!! The amount of buildings can be unlimi
 
 */
 const plainlvl = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // each one is worth 50 pixels. 15* 50 = 750;
-const lv1 = ["Reg",1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0] //triagnle every 150 pixels // 150 * 10 = 1500 pixels
+const lv1 = ["Reg",1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 2, 0, 0, 2, 0, 0, 2, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0] //triagnle every 150 pixels // 150 * 10 = 1500 pixels
 const lv2 = ["Reg", 2, 0 ,0, 2, 0,0, 2, 0, 0];
 const lv3 = ["Backwards-Grav"];
 const defalt = ["Reg", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-const arrayMaster = [lv2, defalt] //put the levels u want here!!!!
+const arrayMaster = [lv1, defalt] //put the levels u want here!!!!
 ///////////////////// APP STATE (VARIABLES) /////////////////////////
 let start;
 let started = false;
+let startScreen;
 let game;
 let movement;
 let gametime = 0;
@@ -41,8 +42,7 @@ var player = {
     x1 : 400,
     x2 : 400, // prob gonna change this to GROUND LEVEL!!!
     y1 : 350,
-    y2 : 400, //player.y1 is to act as the last position of y1.
-    status : "normal"
+    y2 : 400 //player.y2 is to act as the last position of y1.
 }
 let used = false;
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
@@ -52,10 +52,12 @@ let control =  document.getElementById("Control")
 ///////////////////// EVENT LISTENERS ///////////////////////////////
 // start screen//
 window.onload = function(){
+    startScreen = document.createElement("div"); 
     start = document.createElement("h2");
     start.id = "start";
     start.innerHTML = "start";
-    control.append(start);
+    startScreen.append(start);
+    control.append(startScreen);
 }
 control.onclick = init;
 document.addEventListener("keydown", direction);
@@ -63,10 +65,10 @@ document.addEventListener("keydown", direction);
 function init(object){
     if(object.target === start){
         started = true;
-        start.remove();
+        startScreen.remove();
         canvas.clearRect(0, 0, 1500, 500);
         // Make all init variables
-        game = setInterval(action, 15);
+        game = setInterval(action, 20);
 
 
     }
@@ -126,14 +128,15 @@ function unpack(){
 function contact(){
     hitRay.forEach((item, i) => {
         if(player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y2){
-            alert("Game end")
+            endgame();
         }
     });
 
 }
 
 function endgame(){
-
+     clearInterval(game);
+     canvas.clearRect(0, 0, 1500, 500);
 }
 function position(){
     if(currentArray[0] == "Reg"){
