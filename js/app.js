@@ -7,7 +7,6 @@
 How To make a level !!!!
 Remember that character moves about 100 pixels per jumpcounter
 lvl = ["Type of level", then buildings!!!! The amount of buildings can be unlimited!@$WR];
-
 */
 // IDEA, perhaps do [1, "AMOUNT OF TIME", 2 "AMOUNT OF TIME"];
 const plainlvl = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // each one is worth 50 pixels. 15* 50 = 750;
@@ -16,7 +15,7 @@ const lv2 = ["Reg", 2, 0 ,0, 2, 0,0, 2, 0, 0];
 const lv3 = ["Backwards-Grav"];
 const defalt = ["Reg", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 const arrayMaster = [lv1, defalt]; //put the levels u want here!!!!
-const timingMaster = [0, 100, 150, 180, 210, 240, 270, 300, 330, 340 ];
+const timingMaster = [0, 100, 150, 200, 210, 240, 270, 300, 330, 340 ];
 
 ///////////////////// APP STATE (VARIABLES) /////////////////////////
 let start;
@@ -167,7 +166,7 @@ function position(){
             if(player.y1 + 66 <= groundLevel ){
                 canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
                 player.y1 += 16;
-                player.y2 += 66;
+                player.y2 += 16;
             }
                 jumpcounter = 15;
                 movement = undefined;
@@ -201,12 +200,8 @@ function position(){
                 player.y2 += 17;
                 jumpcounter++;
             } else {
-
                 movement = undefined;
-
             }
-
-
         }
          if(movement == undefined && player.y1 - 67 >= groundLevel){ //THIS 75 NEEDS TO BE CHANGED 50 + CHANGE;
             console.log(groundLevel)
@@ -219,12 +214,10 @@ function position(){
                 jumpcounter = 10;
                 movement = undefined;
                 used = false;
-
         } else if(movement != "top"){
             jumpcounter = 0;
         }
         canvas.clearRect(player.x1 - 1, player.y1 - 1, 52, 52);
-
         canvas.beginPath();
         canvas.moveTo(player.x1 + 5, player.y1 + 25);
         canvas.lineTo(player.x1, player.y1 + 25);
@@ -327,7 +320,6 @@ function ground(){
         });
         if(groundedState == "On" && ppa == true){
             movement = "Auto-Fall"
-
         }*/
         groundedState = "off"
         groundLevel = 400;
