@@ -11,11 +11,13 @@ lvl = ["Type of level", then buildings!!!! The amount of buildings can be unlimi
 */
 // IDEA, perhaps do [1, "AMOUNT OF TIME", 2 "AMOUNT OF TIME"];
 const plainlvl = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // each one is worth 50 pixels. 15* 50 = 750;
-const lv1 = ["Reg",1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 2, 0,  0, 2, 0, 0, 2, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, ] //triagnle every 150 pixels // 150 * 10 = 1500 pixels
+const lv1 = ["Reg",1, 1,  1,  1,  2, 2, 2,  1, 1, 1, 1,  1, 1 ] //triagnle every 150 pixels // 150 * 10 = 1500 pixels
 const lv2 = ["Reg", 2, 0 ,0, 2, 0,0, 2, 0, 0];
 const lv3 = ["Backwards-Grav"];
 const defalt = ["Reg", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-const arrayMaster = [lv1, defalt] //put the levels u want here!!!!
+const arrayMaster = [lv1, defalt]; //put the levels u want here!!!!
+const timingMaster = [0, 100, 150, 200, 210, 240, 270, 300, 330, 340 ];
+
 ///////////////////// APP STATE (VARIABLES) /////////////////////////
 let start;
 let started = false;
@@ -24,7 +26,7 @@ let game;
 let movement;
 let gametime = 0;
 let jumpcounter = 0;
-let cooldown = false
+let cooldown = false;
 let loading = false //tells us if we are in the middle of loading something;
 let unpackingcounter;
 let arraypicker = -1; //shows which array is being used in array master.
@@ -39,6 +41,7 @@ let groundLevel = 400;
 let groundStateCount = 0;
 let groundedState = "off";
 let groundStateTime = 0;
+let currentTime = 0;
 var player = {
     x1 : 400,
     x2 : 400, // prob gonna change this to GROUND LEVEL!!!
@@ -107,7 +110,8 @@ function action(){
 function unpack(){
     let rando = Math.random();
     if(loading == true){
-        if(gametime % 10 == 0){
+        if(gametime >= timingMaster[currentTime]){
+            currentTime++;
             currentObject = currentArray[arrayposition];
             arrayposition++;
             if(arrayposition == currentArray.length - 1){
@@ -128,7 +132,7 @@ function unpack(){
 }
 function contact(){
     hitRay.forEach((item, i) => {
-        if(player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y2){
+        if((player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y2) || (player.x1 >= item.x1 && player.x1 <= item.x2 && player.y1 + 50 >= item.y2)){
             endgame();
         }
     });
@@ -144,10 +148,10 @@ function position(){
         if(movement == "top"){
             //need to fix this sometimeas
             used = true;
-            if(jumpcounter < 13){
+            if(jumpcounter < 15){
                 canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
-                player.y1 -= 14;
-                player.y2 -= 14;
+                player.y1 -= 16;
+                player.y2 -= 16;
                 jumpcounter++;
             } else {
 
@@ -157,15 +161,15 @@ function position(){
 
 
         }
-         if(movement == undefined && player.y1 + 64 <= groundLevel){ //THIS 75 NEEDS TO BE CHANGED 50 + CHANGE;
+         if(movement == undefined && player.y1 + 66 <= groundLevel){ //THIS 75 NEEDS TO BE CHANGED 50 + CHANGE;
             console.log(groundLevel)
             console.log(player.y1)
-            if(player.y1 + 64 <= groundLevel ){
+            if(player.y1 + 66 <= groundLevel ){
                 canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
-                player.y1 += 14;
-                player.y2 += 14;
+                player.y1 += 16;
+                player.y2 += 16;
             }
-                jumpcounter = 13;
+                jumpcounter = 15;
                 movement = undefined;
                 used = false;
 
