@@ -2,6 +2,7 @@
 /* GUIDE !!!!
 0 = nothing;
 1 = 1 traingle
+1.5 = 1 small triangle
 2 = 1 square
 -----------------------------------------------------------------------------------------------
 How To make a level !!!!
@@ -10,12 +11,12 @@ lvl = ["Type of level", then buildings!!!! The amount of buildings can be unlimi
 */
 // IDEA, perhaps do [1, "AMOUNT OF TIME", 2 "AMOUNT OF TIME"];
 const plainlvl = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // each one is worth 50 pixels. 15* 50 = 750;
-const lv1 = ["Reg",1, 1,  1,  1,  2, 2, 2,  1, 1, 1, 1,  1, 1 ] //triagnle every 150 pixels // 150 * 10 = 1500 pixels
+const lv1 = ["Reg",1, 1,  1.5, 1, 2, 2, 2, 1, 2, 1, 1, 1, 1,  1, 1 ] //triagnle every 150 pixels // 150 * 10 = 1500 pixels
 const lv2 = ["Reg", 2, 0 ,0, 2, 0,0, 2, 0, 0];
 const lv3 = ["Backwards-Grav"];
 const defalt = ["Reg", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 const arrayMaster = [lv1, defalt]; //put the levels u want here!!!!
-const timingMaster = [0, 100, 150, 200, 210, 240, 270, 300, 330, 340 ];
+const timingMaster = [125, 250, 375, 385, 485, 600, 644, 710, 720];
 
 ///////////////////// APP STATE (VARIABLES) /////////////////////////
 let start;
@@ -147,10 +148,10 @@ function position(){
         if(movement == "top"){
             //need to fix this sometimeas
             used = true;
-            if(jumpcounter < 15){
+            if(jumpcounter < 19){
                 canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
-                player.y1 -= 16;
-                player.y2 -= 16;
+                player.y1 -= 13;
+                player.y2 -= 13;
                 jumpcounter++;
             } else {
 
@@ -160,15 +161,15 @@ function position(){
 
 
         }
-         if(movement == undefined && player.y1 + 66 <= groundLevel){ //THIS 75 NEEDS TO BE CHANGED 50 + CHANGE;
+         if(movement == undefined && player.y1 + 63 <= groundLevel){ //THIS 75 NEEDS TO BE CHANGED 50 + CHANGE;
             console.log(groundLevel)
             console.log(player.y1)
-            if(player.y1 + 66 <= groundLevel ){
+            if(player.y1 + 63 <= groundLevel ){
                 canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
-                player.y1 += 16;
-                player.y2 += 16;
+                player.y1 += 13;
+                player.y2 += 13;
             }
-                jumpcounter = 15;
+                jumpcounter = 19;
                 movement = undefined;
                 used = false;
 
@@ -273,7 +274,17 @@ function render(){
             canvas.stroke();
             adder(1450, 1475, 350, 400);
             adder(1475, 1500, 350, 400);
-        } else if(currentObject == 2){
+        } else if(currentObject == 1.5){
+            canvas.beginPath();
+            canvas.moveTo(1500, 400);
+            canvas.lineTo(1450, 400);
+            canvas.lineTo(1475, 375);
+            canvas.lineTo(1500, 400);
+            canvas.stroke();
+            adder(1450, 1475, 375, 400);
+            adder(1475, 1500, 375, 400);
+
+        }else if(currentObject == 2){
             canvas.beginPath;
             canvas.rect(1450, 350, 50, 50);
             canvas.stroke();
@@ -330,9 +341,9 @@ function ground(){
         //basically checks if there is something landable below the box, If yes, then grounded state is on for a certain period of timeout
         //In this certain period of time, the landable object will go away, and this can run again.
         groundRay.forEach((item, i) => {
-            if(item.x1 <= 450 && item.x1 >= 400 ){
+            if(item.x1 <= 450 && item.x1 >= 400){
                 groundedState = "On";
-                groundStateCount = 95;
+                groundStateCount = 105;
                 groundLevel = item.y1;
             }
         });
