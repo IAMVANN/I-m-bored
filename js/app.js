@@ -13,14 +13,23 @@ lvl = ["Type of level", then buildings!!!! The amount of buildings can be unlimi
 */
 // IDEA, perhaps do [1, "AMOUNT OF TIME", 2 "AMOUNT OF TIME"];
 const plainlvl = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // each one is worth 50 pixels. 15* 50 = 750;
+<<<<<<< HEAD
 const lv1 = ["Reg", 1, 1, 1.5, 1, 2, 2, 2, 1, 2, 1, 1, 1, 1, 1, 1] //triagnle every 150 pixels // 150 * 10 = 1500 pixels
 const lv2 = ["Reg", 2, 0, 0, 2, 0, 0, 2, 0, 0];
+=======
+const lv1 = ["Reg",1, 1,  1.5, 1, 2, 2, 2, 1, 2, 1, 1, 1, 1,  1, 1 ] //triagnle every 150 pixels // 150 * 10 = 1500 pixels
+const lv2 = ["Reg", 2, 0 ,0, 2, 0,0, 2, 0, 0];
+>>>>>>> 450299b7333c143930c8e11ec8b5ab05f9c61ca3
 const lv3 = ["Backwards-Grav"];
 const defalt = ["Reg", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 const arrayMaster = [lv1, defalt]; //put the levels u want here!!!!
 const timingMaster = [125, 250, 375, 385, 485, 600, 644, 710, 720];
+<<<<<<< HEAD
 const starPosition = [500]; //
 const starMaster = [325];
+=======
+
+>>>>>>> 450299b7333c143930c8e11ec8b5ab05f9c61ca3
 ///////////////////// APP STATE (VARIABLES) /////////////////////////
 let start;
 let started = false;
@@ -45,6 +54,7 @@ let groundStateCount = 0;
 let groundedState = "off";
 let groundStateTime = 0;
 let currentTime = 0;
+<<<<<<< HEAD
 let starRay = [];
 let starRayPos = 0;
 let starCooldown = 0;
@@ -53,6 +63,13 @@ var player = {
   x2: 500, // prob gonna change this to GROUND LEVEL!!!
   y1: 450,
   y2: 500 //player.y2 is to act as the last position of y1.
+=======
+var player = {
+    x1 : 400,
+    x2 : 400, // prob gonna change this to GROUND LEVEL!!!
+    y1 : 350,
+    y2 : 400 //player.y2 is to act as the last position of y1.
+>>>>>>> 450299b7333c143930c8e11ec8b5ab05f9c61ca3
 }
 let used = false;
 let stars = 0;
@@ -64,6 +81,7 @@ let canvas = board.getContext("2d");
 let control = document.getElementById("Control")
 ///////////////////// EVENT LISTENERS ///////////////////////////////
 // start screen//
+<<<<<<< HEAD
 window.onload = function() {
   startScreen = document.createElement("div");
   start = document.createElement("h2");
@@ -71,10 +89,20 @@ window.onload = function() {
   start.innerHTML = "start";
   startScreen.append(start);
   control.append(startScreen);
+=======
+window.onload = function(){
+    startScreen = document.createElement("div");
+    start = document.createElement("h2");
+    start.id = "start";
+    start.innerHTML = "start";
+    startScreen.append(start);
+    control.append(startScreen);
+>>>>>>> 450299b7333c143930c8e11ec8b5ab05f9c61ca3
 }
 control.onclick = init;
 document.addEventListener("keydown", direction);
 ///////////////////// FUNCTIONS /////////////////////////////////////
+<<<<<<< HEAD
 function init(object) {
   if (object.target === start) {
     started = true;
@@ -82,6 +110,15 @@ function init(object) {
     canvas.clearRect(0, 100, 1500, 600);
     // Make all init variables
     game = setInterval(action, 20);
+=======
+function init(object){
+    if(object.target === start){
+        started = true;
+        startScreen.remove();
+        canvas.clearRect(0, 0, 1500, 500);
+        // Make all init variables
+        game = setInterval(action, 20);
+>>>>>>> 450299b7333c143930c8e11ec8b5ab05f9c61ca3
 
 
   }
@@ -134,6 +171,22 @@ function unpack() {
       }
 
     }
+<<<<<<< HEAD
+=======
+}
+function unpack(){
+    let rando = Math.random();
+    if(loading == true){
+        if(gametime >= timingMaster[currentTime]){
+            currentTime++;
+            currentObject = currentArray[arrayposition];
+            arrayposition++;
+            if(arrayposition == currentArray.length - 1){
+                loading = false;
+            }
+
+        }
+>>>>>>> 450299b7333c143930c8e11ec8b5ab05f9c61ca3
 
   } else if (loading == false) {
 
@@ -157,6 +210,7 @@ function contact() {
     if ((player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y2) || (player.x1 >= item.x1 && player.x1 <= item.x2 && player.y1 + 50 >= item.y2)) {
       endgame();
     }
+<<<<<<< HEAD
   });
   if (starCooldown == 0) {
     starRay.forEach((item, i) => {
@@ -165,16 +219,42 @@ function contact() {
         starCooldown = 10;
         stars++;
       }
+=======
+}
+function contact(){
+    hitRay.forEach((item, i) => {
+        if((player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y2) || (player.x1 >= item.x1 && player.x1 <= item.x2 && player.y1 + 50 >= item.y2)){
+            endgame();
+        }
+>>>>>>> 450299b7333c143930c8e11ec8b5ab05f9c61ca3
     });
   } else {
     starCooldown - 1;
   }
 }
 
+<<<<<<< HEAD
 function endgame() {
   clearInterval(game);
   canvas.clearRect(0, 0, 1500, 500);
 }
+=======
+function endgame(){
+     clearInterval(game);
+     canvas.clearRect(0, 0, 1500, 500);
+}
+function position(){
+    if(currentArray[0] == "Reg"){
+        if(movement == "top"){
+            //need to fix this sometimeas
+            used = true;
+            if(jumpcounter < 19){
+                canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
+                player.y1 -= 13;
+                player.y2 -= 13;
+                jumpcounter++;
+            } else {
+>>>>>>> 450299b7333c143930c8e11ec8b5ab05f9c61ca3
 
 function position() {
   if (currentArray[0] == "Reg") {
@@ -192,6 +272,7 @@ function position() {
 
       }
 
+<<<<<<< HEAD
 
     }
     if (movement == undefined && player.y1 + 63 <= groundLevel) { //THIS 75 NEEDS TO BE CHANGED 50 + CHANGE;
@@ -208,12 +289,63 @@ function position() {
       jumpcounter = 0;
     }
     /*else if(movement == "Auto-Fall"){
+=======
+        }
+         if(movement == undefined && player.y1 + 63 <= groundLevel){ //THIS 75 NEEDS TO BE CHANGED 50 + CHANGE;
+            console.log(groundLevel)
+            console.log(player.y1)
+            if(player.y1 + 63 <= groundLevel ){
+                canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
+                player.y1 += 13;
+                player.y2 += 13;
+            }
+                jumpcounter = 19;
+                movement = undefined;
+                used = false;
+
+        } else if(movement != "top"){
+            jumpcounter = 0;
+        }/*else if(movement == "Auto-Fall"){
+            canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
+            player.y1 += 50;
+            player.y2 += 50;
+            jumpcounter = 0;
+            movement = undefined;
+            used = false;
+        }*/
+        canvas.clearRect(player.x1 - 1, player.y1 - 1, 52, 52);
+
+        canvas.beginPath();
+        canvas.moveTo(player.x1 + 5, player.y1 + 25);
+        canvas.lineTo(player.x1, player.y1 + 25);
+        canvas.strokeStyle = "white"
+        canvas.stroke();
+        canvas.strokeStyle = "white"
+    } /*else if(currentArray[0] == "Backwards-Grav") {
+        if(movement == "top"){
+            //need to fix this sometimeas
+            used = true;
+            if(jumpcounter < 10){
+                canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
+                player.y1 += 17;
+                player.y2 += 17;
+                jumpcounter++;
+            } else {
+                movement = undefined;
+            }
+        }
+         if(movement == undefined && player.y1 - 67 >= groundLevel){ //THIS 75 NEEDS TO BE CHANGED 50 + CHANGE;
+            console.log(groundLevel)
+            console.log(player.y1)
+            if(player.y1 - 67 >= groundLevel){
+>>>>>>> 450299b7333c143930c8e11ec8b5ab05f9c61ca3
                 canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
                 player.y1 += 50;
                 player.y2 += 50;
                 jumpcounter = 0;
                 movement = undefined;
                 used = false;
+<<<<<<< HEAD
             }*/
     canvas.clearRect(player.x1 - 1, player.y1 - 1, 52, 52);
 
@@ -260,6 +392,20 @@ function position() {
          canvas.strokeStyle = "black"
      }
      */
+=======
+        } else if(movement != "top"){
+            jumpcounter = 0;
+        }
+        canvas.clearRect(player.x1 - 1, player.y1 - 1, 52, 52);
+        canvas.beginPath();
+        canvas.moveTo(player.x1 + 5, player.y1 + 25);
+        canvas.lineTo(player.x1, player.y1 + 25);
+        canvas.strokeStyle = "#9acd32"
+        canvas.stroke();
+        canvas.strokeStyle = "black"
+    }
+    */
+>>>>>>> 450299b7333c143930c8e11ec8b5ab05f9c61ca3
 }
 
 function refresh() {
@@ -279,6 +425,7 @@ function render() {
     canvas.beginPath();
     canvas.rect(player.x1, player.y1, 50, 50);
     canvas.stroke();
+<<<<<<< HEAD
   } else if (cooldown > 0) {
     canvas.beginPath();
     canvas.rect(player.x1, player.y1, 50, 50);
@@ -326,6 +473,60 @@ function render() {
       adder(1450, 1450, 460, 500);
       adder(1500, 1500, 460, 500);
       stander(1450, 1500, 450, 450);
+=======
+    canvas.lineWidth = 1;
+    if(cooldown == 0){
+        canvas.beginPath();
+        canvas.rect(player.x1, player.y1, 50, 50);
+        canvas.stroke();
+    } else if (cooldown > 0){
+        canvas.beginPath();
+        canvas.rect(player.x1, player.y1, 50, 50);
+        canvas.stroke();
+    }
+
+/*    canvas.beginPath()
+        canvas.fillStyle = "red";
+        canvas.rect(995, 0, 5, 166);
+    canvas.fill();
+    canvas.beginPath()
+        canvas.fillStyle = "blue";
+        canvas.rect(995, 166, 5, 166);
+    canvas.fill();
+    canvas.beginPath()
+        canvas.fillStyle = "green";
+        canvas.rect(995, 332, 5, 168);
+    canvas.fill();
+    canvas.fillStyle = "black"*/
+    if(currentObject !== undefined){
+        if(currentObject == 1){
+            //triangle
+            canvas.beginPath();
+            canvas.moveTo(1500, 400);
+            canvas.lineTo(1450, 400);
+            canvas.lineTo(1475, 350);
+            canvas.lineTo(1500, 400);
+            canvas.stroke();
+            adder(1450, 1475, 350, 400);
+            adder(1475, 1500, 350, 400);
+        } else if(currentObject == 1.5){
+            canvas.beginPath();
+            canvas.moveTo(1500, 400);
+            canvas.lineTo(1450, 400);
+            canvas.lineTo(1475, 375);
+            canvas.lineTo(1500, 400);
+            canvas.stroke();
+            adder(1450, 1475, 375, 400);
+            adder(1475, 1500, 375, 400);
+
+        }else if(currentObject == 2){
+            canvas.beginPath;
+            canvas.rect(1450, 350, 50, 50);
+            canvas.stroke();
+            adder(1450, 1450, 360, 400);
+            adder(1500, 1500, 360, 400);
+            stander(1450, 1500, 350, 350);
+>>>>>>> 450299b7333c143930c8e11ec8b5ab05f9c61ca3
 
     }
     currentObject = undefined;
@@ -366,6 +567,7 @@ function direction(event) {
     }
   }
 }
+<<<<<<< HEAD
 
 function ground() {
   if (groundStateCount == 0) {
@@ -399,6 +601,38 @@ function ground() {
   }
 
 }
+=======
+function ground(){
+    if(groundStateCount == 0){
+        /*let ppa = false; // just use to see if bottom is true/false
+        groundRay.forEach((item, i) => {
+            if(item.x2 == 400){
+                ppa = true;
+            }
+        });
+        if(groundedState == "On" && ppa == true){
+            movement = "Auto-Fall"
+        }*/
+        groundedState = "off"
+        groundLevel = 400;
+        groundStateCount = undefined;
+    }
+
+    if(groundedState == "off"){
+        //basically checks if there is something landable below the box, If yes, then grounded state is on for a certain period of timeout
+        //In this certain period of time, the landable object will go away, and this can run again.
+        groundRay.forEach((item, i) => {
+            if(item.x1 <= 450 && item.x1 >= 400){
+                groundedState = "On";
+                groundStateCount = 105;
+                groundLevel = item.y1;
+            }
+        });
+    } else {
+
+        groundStateCount -= 5;
+    }
+>>>>>>> 450299b7333c143930c8e11ec8b5ab05f9c61ca3
 
 function starer(x1, x2, y1, y2) {
   starRay[starRayPos] = new Object();
