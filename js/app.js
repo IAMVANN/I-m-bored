@@ -4,7 +4,18 @@
 1 = 1 traingle
 1.5 = 1 small triangle
 2 = 1 square
-2.5 = 1 Tall square;
+2.01 = Square long platform
+2.11 =  level 1 floating square small square;
+2.115 = level 1 floating square small square TRAP;
+2.12 =  level 2 floating square small square;
+2.125 = level 2 floating square small square TRAP;
+2.2 = 1 Tall square;
+2.3 = small square;
+2.5 = 1 square TRAP
+2.7 = Long tall block;
+100 = FINISH LINE;
+
+
 
 -----------------------------------------------------------------------------------------------
 How To make a level !!!!
@@ -13,14 +24,14 @@ lvl = ["Type of level", then buildings!!!! The amount of buildings can be unlimi
 */
 // IDEA, perhaps do [1, "AMOUNT OF TIME", 2 "AMOUNT OF TIME"];
 const plainlvl = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // each one is worth 50 pixels. 15* 50 = 750;
-const lv1 = ["Reg",1, 1,  1.5, 1, 2, 2, 2, 1, 2, 1, 1, 1, 1,  1, 1 ] //triagnle every 150 pixels // 150 * 10 = 1500 pixels
+const lv1 = ["Reg", 1, 1, 1.5, 1, 2, 2, 2, 1, 2, 2.01, 2.2, 2.11, 2.12, 2.11, 2.2, 2, 1, 2.5, 2, 2.2, 2.11, 2.125, 2.01, 2.2, 2.11, 2.12, 2.7, 2.7,  2.7, "winner" ] //triagnle every 150 pixels // 150 * 10 = 1500 pixels
 const lv2 = ["Reg", 2, 0 ,0, 2, 0,0, 2, 0, 0];
 const lv3 = ["Backwards-Grav"];
-const defalt = ["Reg", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-const arrayMaster = [lv1, defalt]; //put the levels u want here!!!!
-const timingMaster = [125, 250, 375, 385, 485, 600, 644, 710, 720];
-const starPosition = [500]; //
-const starMaster = [325];
+const defalt = ["Reg", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const arrayMaster = [lv1]; //put the levels u want here!!!!
+const timingMaster = [125, 250, 375, 385, 485, 600, 644, 710, 720, 800, 830, 870, 910, 930, 950, 970, 1050, 1100, 1200, 1235, 1275, 1315, 1400, 1430, 1470, 1510, 1605, 1685, 1745, 1850];
+const starPosition = [600, 600, 350]; //
+const starMaster = [325, 670, 1615];
 ///////////////////// APP STATE (VARIABLES) /////////////////////////
 let start;
 let started = false;
@@ -40,7 +51,7 @@ let hitRay = []; //hit array
 let hitRayPos = 0;
 let groundRay = [];
 let groundRayPos = 0;
-let groundLevel = 500;
+let groundLevel = 600;
 let groundStateCount = 0;
 let groundedState = "off";
 let groundStateTime = 0;
@@ -51,8 +62,8 @@ let starCooldown = 0;
 var player = {
     x1 : 500,
     x2 : 500, // prob gonna change this to GROUND LEVEL!!!
-    y1 : 450,
-    y2 : 500 //player.y2 is to act as the last position of y1.
+    y1 : 550,
+    y2 : 600 //player.y2 is to act as the last position of y1.
 }
 let used = false;
 let stars = 0;
@@ -127,7 +138,7 @@ function unpack(){
             currentTime++;
             currentObject = currentArray[arrayposition];
             arrayposition++;
-            if(arrayposition == currentArray.length - 1){
+            if(arrayposition == currentArray.length){
                 loading = false;
             }
 
@@ -141,6 +152,7 @@ function unpack(){
         currentArray = arrayMaster[arraypicker];
         loading = true;
         arrayposition = 1;
+
     }
     if(gametime == starMaster[currentStar] && currentStar <= starMaster.length - 1){
 
@@ -151,25 +163,27 @@ function unpack(){
 }
 function contact(){
     hitRay.forEach((item, i) => {
-        if((player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y2) || (player.x1 >= item.x1 && player.x1 <= item.x2 && player.y1 + 50 >= item.y2)){            endgame();
+        if((player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y2) || (player.x1 >= item.x1 && player.x1 <= item.x2 && player.y1 + 50 >= item.y2)){
+            // loseGame();
         }
     });
     if(starCooldown == 0){
         starRay.forEach((item, i) => {
             if((player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y2) || (player.x1 >= item.x1 && player.x1 <= item.x2 && player.y1 + 50 >= item.y2)){
                 alert("12");
-                starCooldown = 10;
+                starCooldown = 20;
                 stars++;
             }
         });
     } else {
-        starCooldown - 1;
+        starCooldown = starCooldown - 1;
     }
 }
 
-function endgame(){
+
+function loseGame(){
      clearInterval(game);
-     canvas.clearRect(0, 0, 1500, 500);
+     canvas.clearRect(0, 0, 1500, 700);
 }
 function position(){
     if(currentArray[0] == "Reg"){
@@ -255,15 +269,19 @@ function position(){
     */
 }
 function refresh(){
-        var pixelfront = canvas.getImageData(5, 100, 1500, 600);
-        canvas.clearRect(1495, 100, 5, 600);
+        var pixelfront = canvas.getImageData(5, 100, 1500, 700);
+        canvas.clearRect(1495, 100, 5, 700);
         canvas.putImageData(pixelfront, 0, 100);
+}
+function winScreen(){
+    clearInterval(game);
+    canvas.clearRect(0, 0, 1500, 700);
 }
 function render(){
     canvas.beginPath();
     canvas.lineWidth = 10;
-    canvas.moveTo(1000, 506);
-    canvas.lineTo(995, 506);
+    canvas.moveTo(1000, 606);
+    canvas.lineTo(995, 606);
     canvas.stroke();
     canvas.lineWidth = 1;
     if(cooldown == 0){
@@ -293,47 +311,132 @@ function render(){
         if(currentObject == 1){
             //triangle
             canvas.beginPath();
-            canvas.moveTo(1500, 500);
-            canvas.lineTo(1450, 500);
-            canvas.lineTo(1475, 450);
-            canvas.lineTo(1500, 500);
+            canvas.moveTo(1500, 600);
+            canvas.lineTo(1450, 600);
+            canvas.lineTo(1475, 550);
+            canvas.lineTo(1500, 600);
             canvas.stroke();
-            adder(1450, 1475, 450, 500);
-            adder(1475, 1500, 450, 500);
+            adder(1450, 1475, 550, 600);
+            adder(1475, 1500, 550, 600);
         } else if(currentObject == 1.5){
             canvas.beginPath();
-            canvas.moveTo(1500, 500);
-            canvas.lineTo(1450, 500);
-            canvas.lineTo(1475, 475);
-            canvas.lineTo(1500, 500);
+            canvas.moveTo(1500, 600);
+            canvas.lineTo(1450, 600);
+            canvas.lineTo(1475, 575);
+            canvas.lineTo(1500, 600);
             canvas.stroke();
-            adder(1450, 1475, 475, 500);
-            adder(1475, 1500, 475, 500);
+            adder(1450, 1475, 575, 600);
+            adder(1475, 1500, 575, 600);
 
-        }else if(currentObject == 2){
+        } else if(currentObject == 2){
             canvas.beginPath;
-            canvas.rect(1450, 450, 50, 50);
+            canvas.rect(1450, 550, 50, 50);
             canvas.stroke();
-            adder(1450, 1450, 460, 500);
-            adder(1500, 1500, 460, 500);
+            adder(1450, 1450, 560, 600);
+            adder(1500, 1500, 560, 600);
+            stander(1450, 1500, 550, 550);
+        } else if(currentObject == 2.01){
+            canvas.beginPath;
+            canvas.rect(1200, 550, 300, 50);
+            canvas.stroke();
+            adder(1200, 1200, 560, 600);
+            adder(1500, 1500, 560, 600);
+            stander(1200, 1500, 550, 550);
+        } else if(currentObject == 2.11){
+            canvas.beginPath;
+            canvas.rect(1450, 400, 50, 15);
+            canvas.stroke();
+            adder(1450, 1450, 410, 415);
+            adder(1500, 1500, 410, 415);
+            stander(1450, 1500, 400, 400);
+        } else if(currentObject == 2.115){
+            canvas.beginPath;
+            canvas.rect(1450, 400, 50, 15);
+            canvas.stroke();
+            adder(1450, 1450, 410, 415);
+            adder(1500, 1500, 410, 415);
+            stander(1450, 1500, 400, 400);
+            canvas.beginPath();
+            canvas.moveTo(1500, 400);
+            canvas.lineTo(1450, 400);
+            canvas.lineTo(1475, 350);
+            canvas.lineTo(1500, 400);
+            canvas.stroke();
+            adder(1450, 1475, 350, 400);
+            adder(1475, 1500, 350, 400);
+        } else if(currentObject == 2.12){
+            canvas.beginPath;
+            canvas.rect(1450, 350, 50, 15);
+            canvas.stroke();
+            adder(1450, 1450, 360, 365);
+            adder(1500, 1500, 360, 365);
+            stander(1450, 1500, 350, 350);
+        } else if(currentObject == 2.125){
+            canvas.beginPath;
+            canvas.rect(1450, 350, 50, 15);
+            canvas.stroke();
+            adder(1450, 1450, 360, 365);
+            adder(1500, 1500, 360, 365);
+            stander(1450, 1500, 350, 350);
+            canvas.beginPath();
+            canvas.moveTo(1500, 350);
+            canvas.lineTo(1450, 350);
+            canvas.lineTo(1475, 300);
+            canvas.lineTo(1500, 350);
+            canvas.stroke();
+            adder(1450, 1475, 300, 350);
+            adder(1475, 1500, 300, 350);
+        } else if(currentObject == 2.2){
+            canvas.beginPath;
+            canvas.rect(1450, 450, 50, 150);
+            canvas.stroke();
+            adder(1450, 1450, 460, 600);
+            adder(1500, 1500, 460, 600);
             stander(1450, 1500, 450, 450);
 
+        } else if(currentObject == 2.5){
+            canvas.beginPath;
+            canvas.rect(1450, 550, 50, 50);
+            canvas.stroke();
+            adder(1450, 1450, 560, 600);
+            adder(1500, 1500, 560, 600);
+            stander(1450, 1500, 550, 550);
+            canvas.beginPath();
+            canvas.moveTo(1500, 550);
+            canvas.lineTo(1450, 550);
+            canvas.lineTo(1475, 500);
+            canvas.lineTo(1500, 550);
+            canvas.stroke();
+            adder(1450, 1475, 500, 550);
+            adder(1475, 1500, 500, 550);
+
+        } else if(currentObject == 2.7){
+            canvas.beginPath;
+            canvas.rect(1100, 350, 400, 250);
+            canvas.stroke();
+            adder(1100, 1100, 360, 600);
+            adder(1500, 1500, 360, 600);
+            stander(1100, 1500, 350, 350);
+        } else if(currentObject == "winner"){
+            winScreen();
         }
+
+
         currentObject = undefined;
     }
     if(starBoolean == true){
         canvas.beginPath();
         canvas.arc(1450, starPosition[currentStar] - 25, 25, 0, 2 * Math.PI);
         canvas.stroke();
-        starer(1450, 1500, starPosition[currentStar] - 50, 500);
+        starer(1450, 1500, starPosition[currentStar] - 50, starPosition[currentStar]);
         currentStar++;
     }
 }
 function starCounter(){
     /*canvas.clearRect(850, 0, 1000, 100);
-    canvas.drawImage(img, x, y);*
+    canvas.drawImage(img, x, y);
 
-    /
+    */
 };
 function adder(x1, x2, y1, y2){
     hitRay[hitRayPos] = new Object();
@@ -372,7 +475,7 @@ function ground(){
             movement = "Auto-Fall"
         }*/
         groundedState = "off"
-        groundLevel = 500;
+        groundLevel = 600;
         groundStateCount = undefined;
     }
 
@@ -382,7 +485,7 @@ function ground(){
         groundRay.forEach((item, i) => {
             if(item.x1 <= 550 && item.x1 >= 500){
                 groundedState = "On";
-                groundStateCount = 105;
+                groundStateCount = item.x2-item.x1 + 55;
                 groundLevel = item.y1;
             }
         });
