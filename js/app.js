@@ -4,6 +4,8 @@
 1 = 1 traingle
 1.5 = 1 small triangle
 2 = 1 square
+2.5 = 1 Tall square;
+
 -----------------------------------------------------------------------------------------------
 How To make a level !!!!
 Remember that character moves about 100 pixels per jumpcounter
@@ -17,7 +19,8 @@ const lv3 = ["Backwards-Grav"];
 const defalt = ["Reg", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 const arrayMaster = [lv1, defalt]; //put the levels u want here!!!!
 const timingMaster = [125, 250, 375, 385, 485, 600, 644, 710, 720];
-
+const starPosition = [500]; //
+const starMaster = [325];
 ///////////////////// APP STATE (VARIABLES) /////////////////////////
 let start;
 let started = false;
@@ -37,18 +40,24 @@ let hitRay = []; //hit array
 let hitRayPos = 0;
 let groundRay = [];
 let groundRayPos = 0;
-let groundLevel = 400;
+let groundLevel = 500;
 let groundStateCount = 0;
 let groundedState = "off";
 let groundStateTime = 0;
 let currentTime = 0;
+let starRay = [];
+let starRayPos = 0;
+let starCooldown = 0;
 var player = {
-    x1 : 400,
-    x2 : 400, // prob gonna change this to GROUND LEVEL!!!
-    y1 : 350,
-    y2 : 400 //player.y2 is to act as the last position of y1.
+    x1 : 500,
+    x2 : 500, // prob gonna change this to GROUND LEVEL!!!
+    y1 : 450,
+    y2 : 500 //player.y2 is to act as the last position of y1.
 }
 let used = false;
+let stars = 0;
+let starBoolean = false;
+let currentStar = 0;
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 let board = document.getElementById("board");
 let canvas = board.getContext("2d");
@@ -70,7 +79,7 @@ function init(object){
     if(object.target === start){
         started = true;
         startScreen.remove();
-        canvas.clearRect(0, 0, 1500, 500);
+        canvas.clearRect(0, 100, 1500, 600);
         // Make all init variables
         game = setInterval(action, 20);
 
@@ -88,6 +97,10 @@ function action(){
         item.x1 -= 5;
         item.x2 -= 5;
     });
+    starRay.forEach((item, i) => {
+        item.x1 -= 5;
+        item.x2 -= 5;
+    });
 
     unpack();
     ground();
@@ -97,7 +110,7 @@ function action(){
     refresh();//finds current screen and passes it on to render
     render();//renders the whole thing
     contact();
-
+    starCounter();
     player.x2 = player.x1;
     player.y2 = player.y1;
 
@@ -129,14 +142,29 @@ function unpack(){
         loading = true;
         arrayposition = 1;
     }
+    if(gametime == starMaster[currentStar] && currentStar <= starMaster.length - 1){
+
+        starBoolean = true;
+    } else {
+        starBoolean = false;
+    }
 }
 function contact(){
     hitRay.forEach((item, i) => {
-        if((player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y2) || (player.x1 >= item.x1 && player.x1 <= item.x2 && player.y1 + 50 >= item.y2)){
-            endgame();
+        if((player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y2) || (player.x1 >= item.x1 && player.x1 <= item.x2 && player.y1 + 50 >= item.y2)){            endgame();
         }
     });
-
+    if(starCooldown == 0){
+        starRay.forEach((item, i) => {
+            if((player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y2) || (player.x1 >= item.x1 && player.x1 <= item.x2 && player.y1 + 50 >= item.y2)){
+                alert("12");
+                starCooldown = 10;
+                stars++;
+            }
+        });
+    } else {
+        starCooldown - 1;
+    }
 }
 
 function endgame(){
@@ -162,8 +190,6 @@ function position(){
 
         }
          if(movement == undefined && player.y1 + 63 <= groundLevel){ //THIS 75 NEEDS TO BE CHANGED 50 + CHANGE;
-            console.log(groundLevel)
-            console.log(player.y1)
             if(player.y1 + 63 <= groundLevel ){
                 canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
                 player.y1 += 13;
@@ -229,15 +255,15 @@ function position(){
     */
 }
 function refresh(){
-        var pixelfront = canvas.getImageData(5, 0, 1500, 500);
-        canvas.clearRect(1495, 0, 5, 500);
-        canvas.putImageData(pixelfront, 0, 0);
+        var pixelfront = canvas.getImageData(5, 100, 1500, 600);
+        canvas.clearRect(1495, 100, 5, 600);
+        canvas.putImageData(pixelfront, 0, 100);
 }
 function render(){
     canvas.beginPath();
     canvas.lineWidth = 10;
-    canvas.moveTo(1000, 406);
-    canvas.lineTo(995, 406);
+    canvas.moveTo(1000, 506);
+    canvas.lineTo(995, 506);
     canvas.stroke();
     canvas.lineWidth = 1;
     if(cooldown == 0){
@@ -267,35 +293,48 @@ function render(){
         if(currentObject == 1){
             //triangle
             canvas.beginPath();
-            canvas.moveTo(1500, 400);
-            canvas.lineTo(1450, 400);
-            canvas.lineTo(1475, 350);
-            canvas.lineTo(1500, 400);
+            canvas.moveTo(1500, 500);
+            canvas.lineTo(1450, 500);
+            canvas.lineTo(1475, 450);
+            canvas.lineTo(1500, 500);
             canvas.stroke();
-            adder(1450, 1475, 350, 400);
-            adder(1475, 1500, 350, 400);
+            adder(1450, 1475, 450, 500);
+            adder(1475, 1500, 450, 500);
         } else if(currentObject == 1.5){
             canvas.beginPath();
-            canvas.moveTo(1500, 400);
-            canvas.lineTo(1450, 400);
-            canvas.lineTo(1475, 375);
-            canvas.lineTo(1500, 400);
+            canvas.moveTo(1500, 500);
+            canvas.lineTo(1450, 500);
+            canvas.lineTo(1475, 475);
+            canvas.lineTo(1500, 500);
             canvas.stroke();
-            adder(1450, 1475, 375, 400);
-            adder(1475, 1500, 375, 400);
+            adder(1450, 1475, 475, 500);
+            adder(1475, 1500, 475, 500);
 
         }else if(currentObject == 2){
             canvas.beginPath;
-            canvas.rect(1450, 350, 50, 50);
+            canvas.rect(1450, 450, 50, 50);
             canvas.stroke();
-            adder(1450, 1450, 360, 400);
-            adder(1500, 1500, 360, 400);
-            stander(1450, 1500, 350, 350);
+            adder(1450, 1450, 460, 500);
+            adder(1500, 1500, 460, 500);
+            stander(1450, 1500, 450, 450);
 
         }
         currentObject = undefined;
     }
+    if(starBoolean == true){
+        canvas.beginPath();
+        canvas.arc(1450, starPosition[currentStar] - 25, 25, 0, 2 * Math.PI);
+        canvas.stroke();
+        starer(1450, 1500, starPosition[currentStar] - 50, 500);
+        currentStar++;
+    }
 }
+function starCounter(){
+    /*canvas.clearRect(850, 0, 1000, 100);
+    canvas.drawImage(img, x, y);*
+
+    /
+};
 function adder(x1, x2, y1, y2){
     hitRay[hitRayPos] = new Object();
     hitRay[hitRayPos].x1 = x1;
@@ -333,7 +372,7 @@ function ground(){
             movement = "Auto-Fall"
         }*/
         groundedState = "off"
-        groundLevel = 400;
+        groundLevel = 500;
         groundStateCount = undefined;
     }
 
@@ -341,7 +380,7 @@ function ground(){
         //basically checks if there is something landable below the box, If yes, then grounded state is on for a certain period of timeout
         //In this certain period of time, the landable object will go away, and this can run again.
         groundRay.forEach((item, i) => {
-            if(item.x1 <= 450 && item.x1 >= 400){
+            if(item.x1 <= 550 && item.x1 >= 500){
                 groundedState = "On";
                 groundStateCount = 105;
                 groundLevel = item.y1;
@@ -352,4 +391,12 @@ function ground(){
         groundStateCount -= 5;
     }
 
+}
+function starer(x1, x2, y1, y2){
+    starRay[starRayPos] = new Object();
+    starRay[starRayPos].x1 = x1;
+    starRay[starRayPos].x2 = x2;
+    starRay[starRayPos].y1 = y1;
+    starRay[starRayPos].y2 = y2;
+    starRayPos++;
 }
