@@ -168,7 +168,7 @@ function unpack(){
 function contact(){
     hitRay.forEach((item, i) => {
         if((player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y2) || (player.x1 >= item.x1 && player.x1 <= item.x2 && player.y1 + 50 >= item.y2)){
-            // loseGame();
+            loseGame();
         }
     });
     if(starCooldown == 0){
