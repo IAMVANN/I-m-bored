@@ -14,9 +14,6 @@
 2.5 = 1 square TRAP
 2.7 = Long tall block;
 100 = FINISH LINE;
-
-
-
 -----------------------------------------------------------------------------------------------
 How To make a level !!!!
 Remember that character moves about 100 pixels per jumpcounter
@@ -59,7 +56,6 @@ let currentTime = 0;
 let starRay = [];
 let starRayPos = 0;
 let starCooldown = 0;
-
 var player = {
     x1 : 500,
     x2 : 500, // prob gonna change this to GROUND LEVEL!!!
@@ -72,11 +68,7 @@ let starBoolean = false;
 let currentStar = 0;
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 let board = document.getElementById("board");
-let dinoOpen = document.getElementById("pic1");
-let dinoClose = document.getElementById("pic2");
-let chicken = document.getElementById("pic3");
 let canvas = board.getContext("2d");
-
 let control =  document.getElementById("Control")
 ///////////////////// EVENT LISTENERS ///////////////////////////////
 // start screen//
@@ -169,7 +161,7 @@ function unpack(){
 function contact(){
     hitRay.forEach((item, i) => {
         if((player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y2) || (player.x1 >= item.x1 && player.x1 <= item.x2 && player.y1 + 50 >= item.y2)){
-            loseGame();
+            // loseGame();
         }
     });
     if(starCooldown == 0){
@@ -298,18 +290,20 @@ function render(){
         canvas.rect(player.x1, player.y1, 50, 50);
         canvas.stroke();
     }
-    /*if(gametime % 2 == 1){
-        canvas.drawImage(dinoOpen, player.x1, player.y1);
 
-
-    } else {
-        canvas.drawImage(dinoClose, player.x1 , player.y1 );
-
-
-    }*/
-
-
-
+/*    canvas.beginPath()
+        canvas.fillStyle = "red";
+        canvas.rect(995, 0, 5, 166);
+    canvas.fill();
+    canvas.beginPath()
+        canvas.fillStyle = "blue";
+        canvas.rect(995, 166, 5, 166);
+    canvas.fill();
+    canvas.beginPath()
+        canvas.fillStyle = "green";
+        canvas.rect(995, 332, 5, 168);
+    canvas.fill();
+    canvas.fillStyle = "black"*/
     if(currentObject !== undefined){
         if(currentObject == 1){
             //triangle
@@ -428,16 +422,17 @@ function render(){
         currentObject = undefined;
     }
     if(starBoolean == true){
-        canvas.drawImage(chicken, starPosition[currentStar], 1450, starPosition[currentStar]);
+        canvas.beginPath();
+        canvas.arc(1450, starPosition[currentStar] - 25, 25, 0, 2 * Math.PI);
+        canvas.stroke();
         starer(1450, 1500, starPosition[currentStar] - 50, starPosition[currentStar]);
         currentStar++;
     }
 }
 function starCounter(){
-    canvas.clearRect(850, 0, 1000, 100);
+    /*canvas.clearRect(850, 0, 1000, 100);
     canvas.drawImage(img, x, y);
-
-
+    */
 };
 function adder(x1, x2, y1, y2){
     hitRay[hitRayPos] = new Object();
