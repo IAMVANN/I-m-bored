@@ -59,6 +59,7 @@ let currentTime = 0;
 let starRay = [];
 let starRayPos = 0;
 let starCooldown = 0;
+
 var player = {
     x1 : 500,
     x2 : 500, // prob gonna change this to GROUND LEVEL!!!
@@ -71,7 +72,10 @@ let starBoolean = false;
 let currentStar = 0;
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 let board = document.getElementById("board");
+let dinoOpen = document.getElementById("pic1");
+let dinoClose = document.getElementById("pic2");
 let canvas = board.getContext("2d");
+
 let control =  document.getElementById("Control")
 ///////////////////// EVENT LISTENERS ///////////////////////////////
 // start screen//
@@ -293,6 +297,16 @@ function render(){
         canvas.rect(player.x1, player.y1, 50, 50);
         canvas.stroke();
     }
+    if(gametime % 2 == 1){
+        canvas.drawImage(dinoOpen, player.x1 + 1, player.y1  + 1);
+
+
+    } else {
+        canvas.drawImage(dinoClose, player.x1 + 1, player.y1  + 1);
+
+
+    }
+
 
 /*    canvas.beginPath()
         canvas.fillStyle = "red";
