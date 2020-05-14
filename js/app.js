@@ -167,7 +167,7 @@ function unpack(){
 function contact(){
     hitRay.forEach((item, i) => {
         if((player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y1 && player.y1 + 50 <= item.y2) || (player.x1 >= item.x1 && player.x1 <= item.x2 && player.y1 + 50 >= item.y1 && player.y1 + 50 <= item.y2)){
-             //loseGame();
+             loseGame();
         }
     });
     if(starCooldown == 0){
@@ -279,7 +279,7 @@ function winScreen(){
     let winScreen = document.createElement("div");
     let pop = document.createElement("h2");
     pop.innerHTML = "Congrats for beating the game. Dino is now full";
-    startScreen.append(start);
+    startScreen.append(pop);
     control.append(startScreen);
 }
 function render(){
