@@ -220,14 +220,7 @@ function position(){
 
         } else if(movement != "top"){
             jumpcounter = 0;
-        }/*else if(movement == "Auto-Fall"){
-            canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
-            player.y1 += 50;
-            player.y2 += 50;
-            jumpcounter = 0;
-            movement = undefined;
-            used = false;
-        }*/
+        }
         canvas.clearRect(player.x1 - 1, player.y1 - 1, 52, 52);
 
         canvas.beginPath();
@@ -236,42 +229,7 @@ function position(){
         canvas.strokeStyle = "white"
         canvas.stroke();
         canvas.strokeStyle = "white"
-    } /*else if(currentArray[0] == "Backwards-Grav") {
-        if(movement == "top"){
-            //need to fix this sometimeas
-            used = true;
-            if(jumpcounter < 10){
-                canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
-                player.y1 += 17;
-                player.y2 += 17;
-                jumpcounter++;
-            } else {
-                movement = undefined;
-            }
-        }
-         if(movement == undefined && player.y1 - 67 >= groundLevel){ //THIS 75 NEEDS TO BE CHANGED 50 + CHANGE;
-            console.log(groundLevel)
-            console.log(player.y1)
-            if(player.y1 - 67 >= groundLevel){
-                canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
-                player.y1 -= 17;
-                player.y2 -= 17;
-            }
-                jumpcounter = 10;
-                movement = undefined;
-                used = false;
-        } else if(movement != "top"){
-            jumpcounter = 0;
-        }
-        canvas.clearRect(player.x1 - 1, player.y1 - 1, 52, 52);
-        canvas.beginPath();
-        canvas.moveTo(player.x1 + 5, player.y1 + 25);
-        canvas.lineTo(player.x1, player.y1 + 25);
-        canvas.strokeStyle = "#9acd32"
-        canvas.stroke();
-        canvas.strokeStyle = "black"
     }
-    */
 }
 function refresh(){
         var pixelfront = canvas.getImageData(5, 100, 1500, 700);
@@ -471,15 +429,7 @@ function direction(event){
 }
 function ground(){
     if(groundStateCount == 0){
-        /*let ppa = false; // just use to see if bottom is true/false
-        groundRay.forEach((item, i) => {
-            if(item.x2 == 400){
-                ppa = true;
-            }
-        });
-        if(groundedState == "On" && ppa == true){
-            movement = "Auto-Fall"
-        }*/
+        
         groundedState = "off"
         groundLevel = 600;
         groundStateCount = undefined;
