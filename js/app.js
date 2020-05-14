@@ -184,6 +184,11 @@ function contact(){
 function loseGame(){
      clearInterval(game);
      canvas.clearRect(0, 0, 1500, 700);
+     let loseScreen = document.createElement("div");
+     let pop = document.createElement("h2");
+     pop.innerHTML = "You lost!!!";
+     startScreen.append(pop);
+     control.append(startScreen);
 }
 function position(){
     if(currentArray[0] == "Reg"){
