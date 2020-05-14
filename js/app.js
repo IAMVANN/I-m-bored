@@ -73,6 +73,9 @@ let control =  document.getElementById("Control")
 let dinoOpen = document.getElementById("pic1");
 let dinoClose = document.getElementById("pic2");
 let chicken = document.getElementById("pic3");
+let x1 = document.getElementById("pic4");
+let x2 = document.getElementById("pic5");
+let x3 = document.getElementById("pic6");
 ///////////////////// EVENT LISTENERS ///////////////////////////////
 // start screen//
 window.onload = function(){
@@ -164,13 +167,12 @@ function unpack(){
 function contact(){
     hitRay.forEach((item, i) => {
         if((player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y1 && player.y1 + 50 <= item.y2) || (player.x1 >= item.x1 && player.x1 <= item.x2 && player.y1 + 50 >= item.y1 && player.y1 + 50 <= item.y2)){
-             loseGame();
+             //loseGame();
         }
     });
     if(starCooldown == 0){
         starRay.forEach((item, i) => {
             if((player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y2) || (player.x1 >= item.x1 && player.x1 <= item.x2 && player.y1 + 50 >= item.y2)){
-                alert("12");
                 starCooldown = 20;
                 stars++;
             }
@@ -179,8 +181,6 @@ function contact(){
         starCooldown = starCooldown - 1;
     }
 }
-
-
 function loseGame(){
      clearInterval(game);
      canvas.clearRect(0, 0, 1500, 700);
@@ -276,6 +276,11 @@ function refresh(){
 function winScreen(){
     clearInterval(game);
     canvas.clearRect(0, 0, 1500, 700);
+    let winScreen = document.createElement("div");
+    let pop = document.createElement("h2");
+    pop.innerHTML = "Congrats for beating the game. Dino is now full";
+    startScreen.append(start);
+    control.append(startScreen);
 }
 function render(){
     canvas.beginPath();
@@ -426,7 +431,13 @@ function render(){
 function starCounter(){
     canvas.clearRect(850, 0, 1000, 100);
     canvas.drawImage(chicken, 850, 25);
-
+    if(stars == 1){
+        canvas.drawImage(x1, 920, 25);
+    } else if(stars == 2){
+        canvas.drawImage(x2, 920, 25);
+    } else if(stars == 3){
+        canvas.drawImage(x3, 920, 25);
+    }
 };
 function adder(x1, x2, y1, y2){
     hitRay[hitRayPos] = new Object();
