@@ -95,8 +95,7 @@ function init(object){
         startScreen.remove();
         canvas.clearRect(0, 100, 1500, 600);
         // Make all init variables
-        game = setInterval(action, 20);
-
+        game = setInterval(action, 20);/* Source https://www.bitdegree.org/learn/javascript-setinterval */
 
     }
 
@@ -135,7 +134,6 @@ function action(){
     }
 }
 function unpack(){
-    let rando = Math.random();
     if(loading == true){
         if(gametime >= timingMaster[currentTime]){
             currentTime++;
@@ -208,11 +206,16 @@ function position(){
 
 
         }
-         if(movement == undefined && player.y1 + 63 <= groundLevel){ //THIS 75 NEEDS TO BE CHANGED 50 + CHANGE;
-            if(player.y1 + 63 <= groundLevel ){
+         if(movement == undefined && player.y1 + 63 <= groundLevel){ //THIS 63 NEEDS TO BE CHANGED 50 + CHANGE * 2;
+            if(player.y1 + 76 <= groundLevel ){
                 canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
                 player.y1 += 13;
                 player.y2 += 13;
+            } else if(player.y1 + 63 <= groundLevel){// The purpose for this code segment is to make sure that the character y value doesn't "float above the ground"
+                canvas.clearRect(player.x2 - 1, player.y2 - 1, 52, 52);
+                let k = groundLevel - (player.y1 + 52);
+                player.y1 += k;
+                player.y2 += k;
             }
                 jumpcounter = 19;
                 movement = undefined;
@@ -232,7 +235,7 @@ function position(){
     }
 }
 function refresh(){
-        var pixelfront = canvas.getImageData(5, 100, 1500, 700);
+        var pixelfront = canvas.getImageData(5, 100, 1500, 700);/* https://www.w3schools.com/tags/canvas_getimagedata.asp */
         canvas.clearRect(1495, 100, 5, 700);
         canvas.putImageData(pixelfront, 0, 100);
 }
@@ -246,6 +249,7 @@ function winScreen(){
     control.append(startScreen);
 }
 function render(){
+
     canvas.beginPath();
     canvas.lineWidth = 10;
     canvas.moveTo(1000, 606);
@@ -429,7 +433,7 @@ function direction(event){
 }
 function ground(){
     if(groundStateCount == 0){
-        
+
         groundedState = "off"
         groundLevel = 600;
         groundStateCount = undefined;
