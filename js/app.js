@@ -169,7 +169,21 @@ function contact(){
                  loseGame();
             }
         } else if(item.type == "slant"){ // three seperate hitboxes per slant; y- 0- 15. y- 16- 30. y 30 - 50
-            if((player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y1 && player.y1 + 50 <= item.y2) || ){}
+            if(player.x1 + 35 >= item.x1 && player.x1 + 35 <= item.x2 && player.y1 + 50 >= item.y1 && player.y1 + 50 <= item.y2 - 35){//in theorey, this should be yintercept 1
+                loseGame();
+            } else if(player.x1 + 45 >= item.x1 && player.x1 + 45 <= item.x2 && player.y1 + 50 >= item.y1 + 15 && player.y1 + 50 <= item.y2 - 15){
+                 loseGame();
+            } else if(player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y1 + 35 &&  player.y1 + 50 <= item.y2){
+                 loseGame();
+            }
+            if(player.x1 >= item.x1 && player.x1 <= item.x2 - 15 && player.y1 + 50 >= item.y1 && player.y1 + 50 <= item.y2 - 35){//backside
+                loseGame();
+            } else if(player.x1 >= item.x1 && player.x1 <= item.x2 - 5 && player.y1 + 50 >= item.y1 + 15 && player.y1 + 50 <= item.y2 - 15){//backside
+                loseGame();
+            } else if(player.x1 >= item.x1 && player.x1 <= item.x2 && player.y1 + 50 >= item.y1 + 35&& player.y1 + 50 <= item.y2){//backside
+                loseGame();
+            }
+
         } else {
             alert("something wrong");
         }
@@ -296,8 +310,8 @@ function render(){
             canvas.lineTo(1475, 575);
             canvas.lineTo(1500, 600);
             canvas.stroke();
-            adder(1450, 1475, 575, 600, "slant");
-            adder(1475, 1500, 575, 600, "slant");
+            adder(1450, 1475, 575, 600, "straight");
+            adder(1475, 1500, 575, 600, "straight");
 
         } else if(currentObject == 2){
             canvas.beginPath;
