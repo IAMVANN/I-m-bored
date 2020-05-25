@@ -22,16 +22,24 @@ lvl = ["Type of level", then buildings!!!! The amount of buildings can be unlimi
 // IDEA, perhaps do [1, "AMOUNT OF TIME", 2 "AMOUNT OF TIME"];
 const plainlvl = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // each one is worth 50 pixels. 15* 50 = 750;
 const lv1 = ["Reg", 1, 1, 1.5, 1, 2, 2, 2, 1, 2, 2.01, 2.2, 2.11, 2.12, 2.11, 2.2, 2, 1, 2.5, 2, 2.2, 2.11, 2.125, 2.01, 2.2, 2.11, 2.12, 2.7, 2.7,  2.7, "winner" ] //triagnle every 150 pixels // 150 * 10 = 1500 pixels
-const lv2 = ["Reg", 2, 0 ,0, 2, 0,0, 2, 0, 0];
+const lv2 = ["Reg", 2, 2, 2, 2.5, 2.5, 2.5, 2, 2.2, 2.11, 2.12, 2.11, 2.2, 1, 1, 1.5, 1, 2, 2.2, 1, 1, 1, 2.11, 1, 1, 1, 2.12, 1, 1, 1, 2.11, 1 , 2.2, 1.5, 1, 2.5, 2.2, 2.11, 2.12, 2.7, "winner"];
 const lv3 = ["Backwards-Grav"];
 const defalt = ["Reg", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-const arrayMaster = [lv1]; //put the levels u want here!!!!
-const timingMaster = [125, 250, 375, 385, 485, 600, 644, 710, 720, 800, 830, 870, 910, 930, 950, 970, 1050, 1100, 1200, 1235, 1275, 1315, 1400, 1430, 1470, 1510, 1605, 1685, 1745, 1830];
-const starPosition = [600, 600, 350]; //
-const starMaster = [325, 670, 1615];
+const timingMaster1 = [125, 250, 375, 385, 485, 600, 644, 710, 720, 800, 830, 870, 910, 930, 950, 970, 1050, 1100, 1200, 1235, 1275, 1315, 1400, 1430, 1470, 1510, 1605, 1685, 1745, 1820];
+const timingMaster2 = [125, 225, 269, 320, 380, 430, 550, 590, 630, 670, 710, 730, 800, 900, 1000, 1010, 1100, 1130, 1140, 1150, 1160, 1170, 1180, 1190, 1200, 1210, 1220, 1230, 1240, 1250, 1260, 1270, 1370, 1380, 1430, 1480, 1520, 1560, 1655, 1825]
+const starPosition1 = [600, 600, 350]; //
+const starPosition2 = [600, 600, 350];
+const starMaster1 = [325, 670, 1615];
+const starMaster2 = [50, 760, 1615];
+
+let levelz = document.getElementById("levels");
 ///////////////////// APP STATE (VARIABLES) /////////////////////////
 let start;
-let started = false;
+let arrayMaster; //put the levels u want here!!!!
+let timingMaster;
+let starPosition; //
+let starMaster;
+let started;
 let startScreen;
 let game;
 let movement;
@@ -100,6 +108,17 @@ function init(object){
         canvas.clearRect(0, 100, 1500, 600);
         // Make all init variables
         game = setInterval(action, 20);/* Source https://www.bitdegree.org/learn/javascript-setinterval */
+        if(levelz.className == "level-1" ){
+            arrayMaster = [lv1]; //put the levels u want here!!!!
+            timingMaster = timingMaster1;
+            starPosition = starPosition1; //
+            starMaster = starMaster1;
+        } else if(levelz.className == "level-2"){
+            arrayMaster = [lv2];
+            timingMaster = timingMaster2;
+            starPosition = starPosition2; //
+            starMaster = starMaster2;
+        }
 
     }
 
@@ -160,7 +179,6 @@ function unpack(){
 
     }
     if(gametime == starMaster[currentStar] && currentStar <= starMaster.length - 1){
-        alert("asdf")
         starBoolean = true;
     } else {
         starBoolean = false;
@@ -199,7 +217,6 @@ function contact(){
             }
         });
     } else {
-        alert("asdf")
         starCooldown = starCooldown - 1;
     }
 }
