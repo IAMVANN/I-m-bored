@@ -56,7 +56,8 @@ let currentTime = 0;
 let starRay = [];
 let starRayPos = 0;
 let starCooldown = 0;
-let restart = document.createElement("button");
+let restarta = document.createElement("h2");
+restarta.innerHTML = "restart";
 var player = {
     x1 : 500,
     x2 : 500, // prob gonna change this to GROUND LEVEL!!!
@@ -88,7 +89,7 @@ window.onload = function(){
     control.append(startScreen);
 }
 control.onclick = init;
-restart.onclick = reload(); //  https://stackoverflow.com/questions/3715047/how-to-reload-a-page-using-javascript
+restarta.onclick = reloaad; //  https://stackoverflow.com/questions/3715047/how-to-reload-a-page-using-javascript
 document.addEventListener("keydown", direction);
 ///////////////////// FUNCTIONS /////////////////////////////////////
 function init(object){
@@ -185,12 +186,12 @@ function contact(){
 function loseGame(){
      clearInterval(game);
      canvas.clearRect(0, 0, 1500, 700);
-     let startScreen = document.createElement("div");
+     let loseScreen = document.createElement("div");
      let pop = document.createElement("h2");
      pop.innerHTML = "you lost!!!";
      loseScreen.append(pop);
-     loseScreen.append(restart);
-     control.append(startScreen);
+     loseScreen.append(restarta);
+     control.append(loseScreen);
 }
 function position(){
     if(currentArray[0] == "Reg"){
@@ -250,7 +251,7 @@ function winScreen(){
     let pop = document.createElement("h2");
     pop.innerHTML = "congrats for beating the game. dino is now full";
     winScreen.append(pop);
-    winScreen.append(restart);
+    winScreen.append(restarta);
     startScreen.append(winScreen);
     control.append(startScreen);
 }
@@ -469,7 +470,7 @@ function starer(x1, x2, y1, y2){
     starRay[starRayPos].y2 = y2;
     starRayPos++;
 }
-function reload(){
-    windows.location.reload();//  https://stackoverflow.com/questions/3715047/how-to-reload-a-page-using-javascript
+function reloaad(){
+    location.reload();//  https://stackoverflow.com/questions/3715047/how-to-reload-a-page-using-javascript
     return false;
 }
