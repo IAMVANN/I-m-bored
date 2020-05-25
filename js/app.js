@@ -88,6 +88,8 @@ let x2 = document.getElementById("pic5");
 let x3 = document.getElementById("pic6");
 let openingGif = document.createElement("image");
 openingGif.src = "img/opening.gif";
+let endingGif = document.createElement("image");
+endingGif.src = "img/ending1.gif";
 ///////////////////// EVENT LISTENERS ///////////////////////////////
 // start screen//
 window.onload = function(){
@@ -107,6 +109,7 @@ function init(object){
         started = true;
         start.remove();
         startScreen.append(openingGif);
+        control.prepend(startScreen)
         setTimeout(function(){
             starting();
         }, 3000); // https://www.w3schools.com/jsref/met_win_settimeout.asp
@@ -116,6 +119,8 @@ function init(object){
 }
 function starting(){
     canvas.clearRect(0, 100, 1500, 600);
+    openingGif.remove();
+    startScreen.remove();
     // Make all init variables
     game = setInterval(action, 20);/* Source https://www.bitdegree.org/learn/javascript-setinterval */
     if(levelz.className == "level-1" ){
@@ -291,13 +296,13 @@ function refresh(){
 function winScreen(){
     clearInterval(game);
     canvas.clearRect(0, 0, 1500, 700);
-    let winScreen = document.createElement("div");
-    let pop = document.createElement("h2");
-    pop.innerHTML = "congrats for beating the game. dino is now full";
-    winScreen.append(pop);
-    winScreen.append(restarta);
-    startScreen.append(winScreen);
-    control.append(startScreen);
+    control.prepend(endingGif);
+    alert("ASD")
+    setTimeout(function(){
+        endingGif.remove();
+    }, 3000);
+    control.append(restarta);
+
 }
 function render(){
 
