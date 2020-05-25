@@ -56,6 +56,7 @@ let currentTime = 0;
 let starRay = [];
 let starRayPos = 0;
 let starCooldown = 0;
+let restart = document.createElement("button");
 var player = {
     x1 : 500,
     x2 : 500, // prob gonna change this to GROUND LEVEL!!!
@@ -87,12 +88,14 @@ window.onload = function(){
     control.append(startScreen);
 }
 control.onclick = init;
+restart.onclick = reload(); //  https://stackoverflow.com/questions/3715047/how-to-reload-a-page-using-javascript
 document.addEventListener("keydown", direction);
 ///////////////////// FUNCTIONS /////////////////////////////////////
 function init(object){
     if(object.target === start){
         started = true;
         startScreen.remove();
+        start.remove();
         canvas.clearRect(0, 100, 1500, 600);
         // Make all init variables
         game = setInterval(action, 20);/* Source https://www.bitdegree.org/learn/javascript-setinterval */
@@ -205,8 +208,9 @@ function loseGame(){
      canvas.clearRect(0, 0, 1500, 700);
      let loseScreen = document.createElement("div");
      let pop = document.createElement("h2");
-     pop.innerHTML = "You lost!!!";
-     startScreen.append(pop);
+     pop.innerHTML = "you lost!!!";
+     loseScreen.append(pop);
+     loseScreen.append(restart);
      control.append(startScreen);
 }
 function position(){
@@ -265,8 +269,10 @@ function winScreen(){
     canvas.clearRect(0, 0, 1500, 700);
     let winScreen = document.createElement("div");
     let pop = document.createElement("h2");
-    pop.innerHTML = "Congrats for beating the game. Dino is now full";
-    startScreen.append(pop);
+    pop.innerHTML = "congrats for beating the game. dino is now full";
+    winScreen.append(pop);
+    winScreen.append(restart);
+    startScreen.append(winScreen);
     control.append(startScreen);
 }
 function render(){
@@ -484,4 +490,8 @@ function starer(x1, x2, y1, y2){
     starRay[starRayPos].y1 = y1;
     starRay[starRayPos].y2 = y2;
     starRayPos++;
+}
+function reload(){
+    windows.location.reload();//  https://stackoverflow.com/questions/3715047/how-to-reload-a-page-using-javascript
+    return false;
 }
