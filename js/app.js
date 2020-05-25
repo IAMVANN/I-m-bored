@@ -445,7 +445,7 @@ function stander(x1, x2, y1, y2){
     groundRayPos++;
 }
 function direction(event){
-    if (event.keyCode == 32){
+    if (event.keyCode == 87){
         if(used == false){
             movement = "top"
             used = true;
