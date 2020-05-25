@@ -128,6 +128,33 @@ body {
 .button h2:hover{
   background: rgba(0,0,0,1);
 }
+
+.slider{
+  width: 1280px;
+  height: 720px;
+  border: 1px solid black;
+  margin: auto;
+  background-size: 100% 100%;
+  animation: slider 6s infinite;
+  animation-direction: normal;
+}
+
+@keyframes slider{
+  0%, 33%{
+    background-image: url('../img/slide1.png');
+    opacity: 1;
+  }
+  34%, 66%{
+    background-image: url('../img/slide2.png');
+    opacity: 1;
+  }
+  67%, 100%{
+    background-image: url('../img/slide3.png');
+    opacity: 1;
+  }
+}
+
+
 /* Level 1 */
 
 #level-1{
