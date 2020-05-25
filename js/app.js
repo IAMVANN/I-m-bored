@@ -168,14 +168,38 @@ function unpack(){
 }
 function contact(){
     hitRay.forEach((item, i) => {
+        if(item.type == "straight"){
+            if((player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y1 && player.y1 + 50 <= item.y2) || (player.x1 >= item.x1 && player.x1 <= item.x2 && player.y1 + 50 >= item.y1 && player.y1 + 50 <= item.y2)){
+                 loseGame();
+            }
+        } else if(item.type == "slant"){ // three seperate hitboxes per slant; y- 0- 15. y- 16- 30. y 30 - 50
+            if(player.x1 + 35 >= item.x1 && player.x1 + 35 <= item.x2 && player.y1 + 50 >= item.y1 && player.y1 + 50 <= item.y2 - 35){//in theorey, this should be yintercept 1
+                loseGame();
+            } else if(player.x1 + 45 >= item.x1 && player.x1 + 45 <= item.x2 && player.y1 + 50 >= item.y1 + 15 && player.y1 + 50 <= item.y2 - 15){
+                 loseGame();
+            } else if(player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y1 + 35 &&  player.y1 + 50 <= item.y2){
+                 loseGame();
+            }
+            if(player.x1 >= item.x1 && player.x1 <= item.x2 - 15 && player.y1 + 50 >= item.y1 && player.y1 + 50 <= item.y2 - 35){//backside
+                loseGame();
+            } else if(player.x1 >= item.x1 && player.x1 <= item.x2 - 5 && player.y1 + 50 >= item.y1 + 15 && player.y1 + 50 <= item.y2 - 15){//backside
+                loseGame();
+            } else if(player.x1 >= item.x1 && player.x1 <= item.x2 && player.y1 + 50 >= item.y1 + 35&& player.y1 + 50 <= item.y2){//backside
+                loseGame();
+            }
+
+        } else {
         if((player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y1 && player.y1 + 50 <= item.y2) || (player.x1 >= item.x1 && player.x1 <= item.x2 && player.y1 + 50 >= item.y1 && player.y1 + 50 <= item.y2)){
              loseGame();
         }
+    }
+
     });
     if(starCooldown == 0){
         starRay.forEach((item, i) => {
             if((player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y2) || (player.x1 >= item.x1 && player.x1 <= item.x2 && player.y1 + 50 >= item.y2)){
                 starCooldown = 20;
+                alert("HI: "+"Quarantine never stopped anybody"+"= John; Context: Sex;  ")
                 stars++;
             }
         });
@@ -287,8 +311,8 @@ function render(){
             canvas.lineTo(1475, 550);
             canvas.lineTo(1500, 600);
             canvas.stroke();
-            adder(1450, 1475, 550, 600);
-            adder(1475, 1500, 550, 600);
+            adder(1450, 1475, 550, 600, "slant");
+            adder(1475, 1500, 550, 600, "slant");
         } else if(currentObject == 1.5){
             canvas.beginPath();
             canvas.moveTo(1500, 600);
@@ -296,36 +320,36 @@ function render(){
             canvas.lineTo(1475, 575);
             canvas.lineTo(1500, 600);
             canvas.stroke();
-            adder(1450, 1475, 575, 600);
-            adder(1475, 1500, 575, 600);
+            adder(1450, 1475, 575, 600, "straight");
+            adder(1475, 1500, 575, 600, "straight");
 
         } else if(currentObject == 2){
             canvas.beginPath;
             canvas.rect(1450, 550, 50, 50);
             canvas.stroke();
-            adder(1450, 1450, 560, 600);
-            adder(1500, 1500, 560, 600);
+            adder(1450, 1450, 560, 600, "straight");
+            adder(1500, 1500, 560, 600, "straight");
             stander(1450, 1500, 550, 550);
         } else if(currentObject == 2.01){
             canvas.beginPath;
             canvas.rect(1200, 550, 300, 50);
             canvas.stroke();
-            adder(1200, 1200, 560, 600);
-            adder(1500, 1500, 560, 600);
+            adder(1200, 1200, 560, 600, "straight");
+            adder(1500, 1500, 560, 600, "straight");
             stander(1200, 1500, 550, 550);
         } else if(currentObject == 2.11){
             canvas.beginPath;
             canvas.rect(1450, 400, 50, 15);
             canvas.stroke();
-            adder(1450, 1450, 410, 415);
-            adder(1500, 1500, 410, 415);
+            adder(1450, 1450, 410, 415, "straight");
+            adder(1500, 1500, 410, 415, "straight");
             stander(1450, 1500, 400, 400);
         } else if(currentObject == 2.115){
             canvas.beginPath;
             canvas.rect(1450, 400, 50, 15);
             canvas.stroke();
-            adder(1450, 1450, 410, 415);
-            adder(1500, 1500, 410, 415);
+            adder(1450, 1450, 410, 415, "straight");
+            adder(1500, 1500, 410, 415, "straight");
             stander(1450, 1500, 400, 400);
             canvas.beginPath();
             canvas.moveTo(1500, 400);
@@ -333,21 +357,21 @@ function render(){
             canvas.lineTo(1475, 350);
             canvas.lineTo(1500, 400);
             canvas.stroke();
-            adder(1450, 1475, 350, 400);
-            adder(1475, 1500, 350, 400);
+            adder(1450, 1475, 350, 400, "slant");
+            adder(1475, 1500, 350, 400, "slant");
         } else if(currentObject == 2.12){
             canvas.beginPath;
             canvas.rect(1450, 350, 50, 15);
             canvas.stroke();
-            adder(1450, 1450, 360, 365);
-            adder(1500, 1500, 360, 365);
+            adder(1450, 1450, 360, 365, "straight" );
+            adder(1500, 1500, 360, 365, "straight");
             stander(1450, 1500, 350, 350);
         } else if(currentObject == 2.125){
             canvas.beginPath;
             canvas.rect(1450, 350, 50, 15);
             canvas.stroke();
-            adder(1450, 1450, 360, 365);
-            adder(1500, 1500, 360, 365);
+            adder(1450, 1450, 360, 365, "straight");
+            adder(1500, 1500, 360, 365, "straight");
             stander(1450, 1500, 350, 350);
             canvas.beginPath();
             canvas.moveTo(1500, 350);
@@ -355,22 +379,22 @@ function render(){
             canvas.lineTo(1475, 300);
             canvas.lineTo(1500, 350);
             canvas.stroke();
-            adder(1450, 1475, 300, 350);
-            adder(1475, 1500, 300, 350);
+            adder(1450, 1475, 300, 350, "slant");
+            adder(1475, 1500, 300, 350, "slant");
         } else if(currentObject == 2.2){
             canvas.beginPath;
             canvas.rect(1450, 450, 50, 150);
             canvas.stroke();
-            adder(1450, 1450, 460, 600);
-            adder(1500, 1500, 460, 600);
+            adder(1450, 1450, 460, 600, "straight");
+            adder(1500, 1500, 460, 600, "straight");
             stander(1450, 1500, 450, 450);
 
         } else if(currentObject == 2.5){
             canvas.beginPath;
             canvas.rect(1450, 550, 50, 50);
             canvas.stroke();
-            adder(1450, 1450, 560, 600);
-            adder(1500, 1500, 560, 600);
+            adder(1450, 1450, 560, 600, "straight");
+            adder(1500, 1500, 560, 600, "straight");
             stander(1450, 1500, 550, 550);
             canvas.beginPath();
             canvas.moveTo(1500, 550);
@@ -378,15 +402,15 @@ function render(){
             canvas.lineTo(1475, 500);
             canvas.lineTo(1500, 550);
             canvas.stroke();
-            adder(1450, 1475, 500, 550);
-            adder(1475, 1500, 500, 550);
+            adder(1450, 1475, 500, 550, "slant");
+            adder(1475, 1500, 500, 550, "slant");
 
         } else if(currentObject == 2.7){
             canvas.beginPath;
             canvas.rect(1100, 350, 400, 250);
             canvas.stroke();
-            adder(1100, 1100, 360, 600);
-            adder(1500, 1500, 360, 600);
+            adder(1100, 1100, 360, 600, "straight");
+            adder(1500, 1500, 360, 600, "straight");
             stander(1100, 1500, 350, 350);
         } else if(currentObject == "winner"){
             winScreen();
@@ -402,6 +426,17 @@ function render(){
         currentStar++;
     }
 }
+function starCounter(){
+    canvas.clearRect(850, 0, 1000, 100);
+    canvas.drawImage(chicken, 850, 25);
+    if(stars == 1){
+        canvas.drawImage(x1, 920, 25);
+    } else if(stars == 2){
+        canvas.drawImage(x2, 920, 25);
+    } else if(stars == 3){
+        canvas.drawImage(x3, 920, 25);
+    }
+};
 function starCounter(){
     canvas.clearRect(850, 0, 1000, 100);
     canvas.drawImage(chicken, 850, 25);
