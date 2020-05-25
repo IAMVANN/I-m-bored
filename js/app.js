@@ -86,6 +86,8 @@ let chicken = document.getElementById("pic3");
 let x1 = document.getElementById("pic4");
 let x2 = document.getElementById("pic5");
 let x3 = document.getElementById("pic6");
+let openingGif = document.createElement("image");
+openingGif.src = "img/opening.gif";
 ///////////////////// EVENT LISTENERS ///////////////////////////////
 // start screen//
 window.onload = function(){
@@ -103,25 +105,30 @@ document.addEventListener("keydown", direction);
 function init(object){
     if(object.target === start){
         started = true;
-        startScreen.remove();
         start.remove();
-        canvas.clearRect(0, 100, 1500, 600);
-        // Make all init variables
-        game = setInterval(action, 20);/* Source https://www.bitdegree.org/learn/javascript-setinterval */
-        if(levelz.className == "level-1" ){
-            arrayMaster = [lv1]; //put the levels u want here!!!!
-            timingMaster = timingMaster1;
-            starPosition = starPosition1; //
-            starMaster = starMaster1;
-        } else if(levelz.className == "level-2"){
-            arrayMaster = [lv2];
-            timingMaster = timingMaster2;
-            starPosition = starPosition2; //
-            starMaster = starMaster2;
-        }
+        startScreen.append(openingGif);
+        setTimeout(function(){
+            starting();
+        }, 3000); // https://www.w3schools.com/jsref/met_win_settimeout.asp
 
     }
 
+}
+function starting(){
+    canvas.clearRect(0, 100, 1500, 600);
+    // Make all init variables
+    game = setInterval(action, 20);/* Source https://www.bitdegree.org/learn/javascript-setinterval */
+    if(levelz.className == "level-1" ){
+        arrayMaster = [lv1]; //put the levels u want here!!!!
+        timingMaster = timingMaster1;
+        starPosition = starPosition1; //
+        starMaster = starMaster1;
+    } else if(levelz.className == "level-2"){
+        arrayMaster = [lv2];
+        timingMaster = timingMaster2;
+        starPosition = starPosition2; //
+        starMaster = starMaster2;
+    }
 }
 function action(){
     gametime += 1;
