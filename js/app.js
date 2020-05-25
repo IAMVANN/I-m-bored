@@ -160,7 +160,7 @@ function unpack(){
 
     }
     if(gametime == starMaster[currentStar] && currentStar <= starMaster.length - 1){
-
+        alert("asdf")
         starBoolean = true;
     } else {
         starBoolean = false;
@@ -188,22 +188,18 @@ function contact(){
                 loseGame();
             }
 
-        } else {
-        if((player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y1 && player.y1 + 50 <= item.y2) || (player.x1 >= item.x1 && player.x1 <= item.x2 && player.y1 + 50 >= item.y1 && player.y1 + 50 <= item.y2)){
-             loseGame();
         }
-    }
 
     });
     if(starCooldown == 0){
         starRay.forEach((item, i) => {
-            if((player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y2) || (player.x1 >= item.x1 && player.x1 <= item.x2 && player.y1 + 50 >= item.y2)){
+            if((player.x1 + 50 >= item.x1 && player.x1 + 50 <= item.x2 && player.y1 + 50 >= item.y1 && player.y1 + 50 <= item.y2) || (player.x1 >= item.x1 && player.x1 <= item.x2 && player.y1 + 50 >= item.y1 && player.y1 + 50 <= item.y2)){
                 starCooldown = 20;
-                alert("HI: "+"Quarantine never stopped anybody"+"= John; Context: Sex;  ")
                 stars++;
             }
         });
     } else {
+        alert("asdf")
         starCooldown = starCooldown - 1;
     }
 }
@@ -448,12 +444,13 @@ function starCounter(){
         canvas.drawImage(x3, 920, 25);
     }
 };
-function adder(x1, x2, y1, y2){
+function adder(x1, x2, y1, y2, type){
     hitRay[hitRayPos] = new Object();
     hitRay[hitRayPos].x1 = x1;
     hitRay[hitRayPos].x2 = x2;
     hitRay[hitRayPos].y1 = y1;
     hitRay[hitRayPos].y2 = y2;
+    hitRay[hitRayPos].type = type;
     hitRayPos++;
 }
 function stander(x1, x2, y1, y2){
