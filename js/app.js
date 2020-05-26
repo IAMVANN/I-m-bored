@@ -297,7 +297,6 @@ function winScreen(){
     clearInterval(game);
     canvas.clearRect(0, 0, 1500, 700);
     control.prepend(endingGif);
-    alert("ASD")
     setTimeout(function(){
         endingGif.remove();
     }, 3000);
