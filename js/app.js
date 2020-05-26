@@ -112,7 +112,7 @@ function init(object){
         control.prepend(startScreen)
         setTimeout(function(){
             starting();
-        }, 3000); // https://www.w3schools.com/jsref/met_win_settimeout.asp
+        }, 10000); // https://www.w3schools.com/jsref/met_win_settimeout.asp
 
     }
 
@@ -299,7 +299,7 @@ function winScreen(){
     control.prepend(endingGif);
     setTimeout(function(){
         endingGif.remove();
-    }, 3000);
+    }, 5000);
     control.append(restarta);
 
 }
