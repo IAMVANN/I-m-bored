@@ -160,6 +160,16 @@ body {
 #level-1{
   text-align: center;
   font-family: "Major Mono Display", monospace;
+  background-image: url(../img/pink_background.png);
+  background-size:  cover;
+  background-color: rgba(0, 0, 0, 0.3);
+  background-blend-mode: darken;
+  color: white;
+}
+
+#level-2{
+  text-align: center;
+  font-family: "Major Mono Display", monospace;
   background-image: url(../img/green_background.png);
   background-size:  cover;
   background-color: rgba(0, 0, 0, 0.3);
