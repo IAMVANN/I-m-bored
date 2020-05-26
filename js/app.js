@@ -101,7 +101,7 @@ window.onload = function(){
     control.append(startScreen);
 }
 control.onclick = init;
-restarta.onclick = reloaad; //  https://stackoverflow.com/questions/3715047/how-to-reload-a-page-using-javascript
+restarta.onclick = reloaad; // tutorial = "https://stackoverflow.com/questions/3715047/how-to-reload-a-page-using-javascript (Lekensteyn, 2010)"
 document.addEventListener("keydown", direction);
 ///////////////////// FUNCTIONS /////////////////////////////////////
 function init(object){
@@ -112,7 +112,7 @@ function init(object){
         control.prepend(startScreen)
         setTimeout(function(){
             starting();
-        }, 10000); // https://www.w3schools.com/jsref/met_win_settimeout.asp
+        }, 10000); // tutorial = "https://www.w3schools.com/jsref/met_win_settimeout.asp" (“Window setTimeout() Method”, 2020)
 
     }
 
@@ -122,7 +122,7 @@ function starting(){
     openingGif.remove();
     startScreen.remove();
     // Make all init variables
-    game = setInterval(action, 20);/* Source https://www.bitdegree.org/learn/javascript-setinterval */
+    game = setInterval(action, 20);/* tutorial = "https://www.bitdegree.org/learn/javascript-setinterval"(BitDegree, 2017) */
     if(levelz.className == "level-1" ){
         arrayMaster = [lv1]; //put the levels u want here!!!!
         timingMaster = timingMaster1;
@@ -289,7 +289,7 @@ function position(){
     }
 }
 function refresh(){
-        var pixelfront = canvas.getImageData(5, 100, 1500, 700);/* https://www.w3schools.com/tags/canvas_getimagedata.asp */
+        var pixelfront = canvas.getImageData(5, 100, 1500, 700);/* tutorial = "https://www.w3schools.com/tags/canvas_getimagedata.asp" (“HTML canvas getImageData() Method”, 2020) */
         canvas.clearRect(1495, 100, 5, 700);
         canvas.putImageData(pixelfront, 0, 100);
 }
@@ -531,6 +531,6 @@ function starer(x1, x2, y1, y2){
     starRayPos++;
 }
 function reloaad(){
-    location.reload();//  https://stackoverflow.com/questions/3715047/how-to-reload-a-page-using-javascript
+    location.reload();// tutorial = "https://stackoverflow.com/questions/3715047/how-to-reload-a-page-using-javascript" (BitDegree, 2017)
     return false;
 }
