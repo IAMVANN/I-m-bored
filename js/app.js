@@ -1,13 +1,27 @@
 ///////////////////// CONSTANTS /////////////////////////////////////z
 let levelz = document.getElementById("levels");
 let board = document.getElementById("board");
-let canvas = board.getContext("2d");
+let ctx. = board.getContext("2d");
 let control =  document.getElementById("Control")
 
 ///////////////////// APP STATE (VARIABLES) /////////////////////////
-let GameState = ¨OFF¨;
-let start;
+
 let statScreen;
+let game;
+let player = [
+    width = 50,
+    hieght = 100,
+    sprite = undefined,
+    x-vel = 0,//velocity
+    y-vel = 0
+]
+let ground = [
+    x-start = 0,
+    x-end = 
+    
+]
+let terrain = {}
+
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 
 ///////////////////// EVENT LISTENERS ///////////////////////////////
@@ -25,6 +39,16 @@ document.addEventListener("keydown", direction);
 
 ///////////////////// FUNCTIONS /////////////////////////////////////
 function init(){
+    startScreen.remove()
+    ctx.clearRect();
+    game = setInterval(action, 30);
 }
-function direction(){
+function action(){
+    
+    draw();
 }
+function draw(){
+    
+    
+}
+
